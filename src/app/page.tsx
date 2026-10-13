@@ -1,6 +1,9 @@
 import Animate from "@/components/AnimateOnScroll";
 import ContactForm from "@/components/ContactForm";
+import CountUp from "@/components/CountUp";
+import FAQ from "@/components/FAQ";
 import MobileNav from "@/components/MobileNav";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 import {
   Car, Paintbrush, Hammer, CloudSnow, Truck, Shield,
   Phone, Mail, MapPin, Star, CheckCircle2, Award,
@@ -200,17 +203,17 @@ export default function Home() {
               </div>
               <div className="flex gap-6 sm:gap-10 mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/10">
                 <div>
-                  <div className="text-3xl font-black text-white">40+</div>
+                  <div className="text-3xl font-black text-white"><CountUp to={40} suffix="+" /></div>
                   <div className="text-white/40 text-xs mt-0.5">jaar ervaring</div>
                 </div>
                 <div>
                   <div className="flex items-center gap-1 text-3xl font-black text-white">
-                    4.8 <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    <CountUp to={4.8} decimals={1} /> <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                   </div>
                   <div className="text-white/40 text-xs mt-0.5">Google rating</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-black text-white">100%</div>
+                  <div className="text-3xl font-black text-white"><CountUp to={100} suffix="%" /></div>
                   <div className="text-white/40 text-xs mt-0.5">BOVAG kwaliteit</div>
                 </div>
               </div>
@@ -309,6 +312,41 @@ export default function Home() {
                     <h3 className="text-gray-900 font-bold text-lg mb-3">{service.title}</h3>
                     <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
                   </div>
+                </div>
+              </Animate>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── WERKPROCES ─── */}
+      <section className="py-16 md:py-24 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <Animate animation="reveal" className="mb-12">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-1 h-8 bg-brand-700 rounded-full" />
+              <span className="text-brand-700 text-xs font-bold uppercase tracking-widest">Hoe werkt het</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-3">Van schade naar rijklaar</h2>
+            <p className="text-gray-500 max-w-lg">In vier stappen zorgen wij dat uw auto snel en vakkundig hersteld is.</p>
+          </Animate>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+            {[
+              { n: "01", title: "Schade melden", desc: "Bel ons, stuur een bericht of vul het online formulier in. Wij reageren binnen 24 uur." },
+              { n: "02", title: "Gratis beoordeling", desc: "Wij beoordelen de schade vrijblijvend en maken een heldere offerte op maat." },
+              { n: "03", title: "Vakkundige reparatie", desc: "Onze specialisten herstellen uw auto met hoogwaardige materialen. U krijgt een leenauto." },
+              { n: "04", title: "Auto klaar", desc: "Uw auto is gereinigd en rijklaar. Wij leveren hem persoonlijk bij u af of u haalt hem op." },
+            ].map((step, i) => (
+              <Animate key={step.n} delay={i * 100} animation="reveal">
+                <div className="relative">
+                  <div className="w-12 h-12 rounded-2xl bg-brand-50 border-2 border-brand-100 flex items-center justify-center mb-4">
+                    <span className="text-brand-700 font-black text-sm">{step.n}</span>
+                  </div>
+                  <h3 className="font-black text-gray-900 text-lg mb-2">{step.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
+                  {i < 3 && (
+                    <div className="hidden lg:block absolute top-6 left-[calc(100%+1rem)] w-[calc(100%-2rem)] h-px bg-gradient-to-r from-brand-200 to-brand-100" style={{ width: "calc(100% - 3rem)", left: "calc(100% + 1.5rem)" }} />
+                  )}
                 </div>
               </Animate>
             ))}
@@ -480,6 +518,33 @@ export default function Home() {
               </Animate>
             ))}
           </div>
+          <Animate animation="reveal" className="mt-12 pt-10 border-t border-gray-100">
+            <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-5 text-center">Wij werken samen met alle grote verzekeraars</p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {["Centraal Beheer", "Interpolis", "OHRA", "Allianz", "Nationale-Nederlanden", "Aegon", "InShared", "Univé"].map((name) => (
+                <span key={name} className="bg-gray-50 border border-gray-200 rounded-full px-4 py-1.5 text-gray-600 text-sm font-medium">
+                  {name}
+                </span>
+              ))}
+            </div>
+          </Animate>
+        </div>
+      </section>
+
+      {/* ─── FAQ ─── */}
+      <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <Animate animation="reveal" className="mb-10">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-1 h-8 bg-brand-700 rounded-full" />
+              <span className="text-brand-700 text-xs font-bold uppercase tracking-widest">Veelgestelde vragen</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">Heeft u een vraag?</h2>
+            <p className="text-gray-500">Hieronder vindt u antwoord op de meest gestelde vragen. Staat uw vraag er niet bij? Neem dan gerust contact op.</p>
+          </Animate>
+          <Animate animation="reveal">
+            <FAQ />
+          </Animate>
         </div>
       </section>
 
@@ -646,6 +711,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      <StickyMobileCTA />
     </>
   );
 }
