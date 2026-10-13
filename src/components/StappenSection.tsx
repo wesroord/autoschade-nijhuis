@@ -109,7 +109,7 @@ export default function StappenSection() {
           className="absolute inset-0 bg-white rounded-2xl border border-gray-200 overflow-hidden"
           style={{
             zIndex: 10 + i,
-            transform: i <= mobileCard ? "translateY(0)" : "translateY(110%)",
+            transform: i <= mobileCard ? "translateY(0)" : "translateY(100vh)",
             transition: "transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1)",
             boxShadow: i === mobileCard
               ? "0 8px 32px rgba(0,0,0,0.12)"
