@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-950: #0d1550;
+  --color-navy-900: #1B2880;
+  --color-navy-800: #1e30a0;
+  --color-navy-700: #2440c0;
+  --color-navy-600: #2B4AD4;
+  --color-navy-500: #3D5FE8;
+  --color-navy-100: #e8ecfc;
+  --color-navy-50: #f3f5ff;
+}
+
+:root {
+  --background: #ffffff;
+}
+
+body {
+  background: var(--background);
+  color: #111827;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
