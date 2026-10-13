@@ -161,7 +161,7 @@ export default function Home() {
 
       {/* ─── HERO ─── */}
       {/* ─── HERO ─── */}
-      <section id="home" className="relative flex items-center pt-16 overflow-hidden h-[560px] sm:h-[620px] lg:h-[680px]">
+      <section id="home" className="relative flex items-center pt-16 overflow-hidden h-[100svh] sm:h-[620px] lg:h-[680px] max-h-[680px] sm:max-h-none">
         {/* Building photo: fixed 680px height, minimal crop (image is 1892×800) */}
         <div className="absolute inset-0 z-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -187,10 +187,10 @@ export default function Home() {
                 <br />IN SCHADE
                 <br />WERK
               </h1>
-              <p className="text-white/60 text-base sm:text-lg leading-relaxed max-w-md mb-6">
+              <p className="hidden sm:block text-white/60 text-base sm:text-lg leading-relaxed max-w-md mb-6">
                 Familiebedrijf in Denekamp. Vakkundig herstel van alle autoschade. BOVAG gecertificeerd. Duurzaam Repareren.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="hidden sm:flex flex-wrap gap-4">
                 <a href="#contact" className="btn-primary bg-brand-700 hover:bg-brand-600 text-white px-7 py-3.5 rounded-lg font-bold flex items-center gap-2">
                   Gratis offerte aanvragen <ArrowRight className="w-4 h-4" />
                 </a>
@@ -198,7 +198,7 @@ export default function Home() {
                   Onze diensten <ChevronRight className="w-4 h-4" />
                 </a>
               </div>
-              <div className="flex gap-6 sm:gap-10 mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/10">
+              <div className="hidden sm:flex gap-6 sm:gap-10 mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/10">
                 <div>
                   <div className="text-3xl font-black text-white">40+</div>
                   <div className="text-white/40 text-xs mt-0.5">jaar ervaring</div>
