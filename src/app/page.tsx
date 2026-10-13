@@ -4,6 +4,7 @@ import CountUp from "@/components/CountUp";
 import FAQ from "@/components/FAQ";
 import MobileNav from "@/components/MobileNav";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
+import StappenSection from "@/components/StappenSection";
 import {
   Car, Paintbrush, Hammer, CloudSnow, Truck, Shield,
   Phone, Mail, MapPin, Star, CheckCircle2, Award,
@@ -330,27 +331,7 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-3">Van schade naar rijklaar</h2>
             <p className="text-gray-500 max-w-lg">In vier stappen zorgen wij dat uw auto snel en vakkundig hersteld is.</p>
           </Animate>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-            {[
-              { n: "01", title: "Schade melden", desc: "Bel ons, stuur een bericht of vul het online formulier in. Wij reageren binnen 24 uur." },
-              { n: "02", title: "Gratis beoordeling", desc: "Wij beoordelen de schade vrijblijvend en maken een heldere offerte op maat." },
-              { n: "03", title: "Vakkundige reparatie", desc: "Onze specialisten herstellen uw auto met hoogwaardige materialen. U krijgt een leenauto." },
-              { n: "04", title: "Auto klaar", desc: "Uw auto is gereinigd en rijklaar. Wij leveren hem persoonlijk bij u af of u haalt hem op." },
-            ].map((step, i) => (
-              <Animate key={step.n} delay={i * 100} animation="reveal">
-                <div className="relative">
-                  <div className="w-12 h-12 rounded-2xl bg-brand-50 border-2 border-brand-100 flex items-center justify-center mb-4">
-                    <span className="text-brand-700 font-black text-sm">{step.n}</span>
-                  </div>
-                  <h3 className="font-black text-gray-900 text-lg mb-2">{step.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
-                  {i < 3 && (
-                    <div className="hidden lg:block absolute top-6 left-[calc(100%+1rem)] w-[calc(100%-2rem)] h-px bg-gradient-to-r from-brand-200 to-brand-100" style={{ width: "calc(100% - 3rem)", left: "calc(100% + 1.5rem)" }} />
-                  )}
-                </div>
-              </Animate>
-            ))}
-          </div>
+          <StappenSection />
         </div>
       </section>
 
