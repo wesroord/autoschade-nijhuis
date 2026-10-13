@@ -1,5 +1,6 @@
 import Animate from "@/components/AnimateOnScroll";
 import ContactForm from "@/components/ContactForm";
+import MobileNav from "@/components/MobileNav";
 import {
   Car, Paintbrush, Hammer, CloudSnow, Truck, Shield,
   Phone, Mail, MapPin, Star, CheckCircle2, Award,
@@ -118,7 +119,7 @@ export default function Home() {
     <>
       {/* ─── NAVBAR ─── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 nav-blur border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
           <a href="#home" className="flex items-center gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo.png" alt="Autoschade Bertie Nijhuis logo" className="h-10 w-10 rounded-lg flex-shrink-0" />
@@ -145,21 +146,22 @@ export default function Home() {
               </a>
             ))}
           </nav>
-          <div className="flex items-center gap-4">
-            <a href="tel:0541354640" className="hidden sm:flex items-center gap-1.5 text-gray-700 text-sm font-semibold hover:text-gray-900 transition-colors">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <a href="tel:0541354640" className="hidden md:flex items-center gap-1.5 text-gray-700 text-sm font-semibold hover:text-gray-900 transition-colors">
               <Phone className="w-4 h-4 text-brand-700" />
               0541-354640
             </a>
-            <a href="#contact" className="btn-primary bg-brand-700 hover:bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-bold">
+            <a href="#contact" className="hidden lg:block btn-primary bg-brand-700 hover:bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-bold">
               Schade melden
             </a>
+            <MobileNav />
           </div>
         </div>
       </header>
 
       {/* ─── HERO ─── */}
       {/* ─── HERO ─── */}
-      <section id="home" className="relative flex items-center pt-16 overflow-hidden" style={{ height: "680px" }}>
+      <section id="home" className="relative flex items-center pt-16 overflow-hidden h-[560px] sm:h-[620px] lg:h-[680px]">
         {/* Building photo: fixed 680px height, minimal crop (image is 1892×800) */}
         <div className="absolute inset-0 z-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -175,17 +177,17 @@ export default function Home() {
         <div className="absolute inset-0 z-0" style={{ background: "linear-gradient(105deg, rgba(4,8,20,0.85) 0%, rgba(4,8,20,0.60) 50%, rgba(4,8,20,0.20) 100%)" }} />
         {/* Bottom fade to white */}
         <div className="absolute bottom-0 left-0 right-0 h-24 z-10" style={{ background: "linear-gradient(to top, #ffffff, transparent)" }} />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full py-6 sm:py-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left */}
             <div>
-              <h1 className="text-5xl md:text-6xl xl:text-7xl font-black text-white leading-[0.95] tracking-tighter mb-5">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-black text-white leading-[0.95] tracking-tighter mb-4">
                 IJZER
                 <span className="text-brand-400">STERK</span>
                 <br />IN SCHADE
                 <br />WERK
               </h1>
-              <p className="text-white/60 text-lg leading-relaxed max-w-md mb-7">
+              <p className="text-white/60 text-base sm:text-lg leading-relaxed max-w-md mb-6">
                 Familiebedrijf in Denekamp. Vakkundig herstel van alle autoschade. BOVAG gecertificeerd. Duurzaam Repareren.
               </p>
               <div className="flex flex-wrap gap-4">
@@ -196,7 +198,7 @@ export default function Home() {
                   Onze diensten <ChevronRight className="w-4 h-4" />
                 </a>
               </div>
-              <div className="flex gap-10 mt-8 pt-6 border-t border-white/10">
+              <div className="flex gap-6 sm:gap-10 mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/10">
                 <div>
                   <div className="text-3xl font-black text-white">40+</div>
                   <div className="text-white/40 text-xs mt-0.5">jaar ervaring</div>
@@ -258,8 +260,8 @@ export default function Home() {
 
       {/* ─── USP BAR ─── */}
       <section className="bg-white py-10 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {usps.map((usp, i) => (
               <Animate key={usp.label} delay={i * 70} animation="reveal">
                 <div className="flex items-center gap-4 group">
@@ -278,8 +280,8 @@ export default function Home() {
       </section>
 
       {/* ─── DIENSTEN ─── */}
-      <section id="diensten" className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="diensten" className="py-16 md:py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <Animate animation="reveal" className="mb-14">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-1 h-8 bg-brand-700 rounded-full" />
@@ -318,16 +320,16 @@ export default function Home() {
       </section>
 
       {/* ─── OVER ONS ─── */}
-      <section id="over-ons" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section id="over-ons" className="py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <Animate animation="reveal-left">
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-1 h-8 bg-brand-700 rounded-full" />
                   <span className="text-brand-700 text-xs font-bold uppercase tracking-widest">Over ons</span>
                 </div>
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-6 leading-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-5 leading-tight">
                   Familiebedrijf met<br />
                   <span className="text-brand-700">meer dan 40 jaar</span><br />
                   vakmanschap
@@ -387,15 +389,15 @@ export default function Home() {
       </section>
 
       {/* ─── GOOGLE REVIEWS ─── */}
-      <section id="reviews" className="py-24 bg-gray-50 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="reviews" className="py-16 md:py-24 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <Animate animation="reveal" className="mb-14">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-1 h-8 bg-yellow-400 rounded-full" />
               <span className="text-gray-600 text-xs font-bold uppercase tracking-widest">Google Reviews</span>
             </div>
             <div className="flex items-end gap-5 mb-2">
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">Wat onze klanten zeggen</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight">Wat onze klanten zeggen</h2>
             </div>
             <div className="flex items-center gap-3 mt-3">
               <div className="flex gap-1">
@@ -445,14 +447,14 @@ export default function Home() {
       </section>
 
       {/* ─── PARTNERS ─── */}
-      <section id="partners" className="py-24 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="partners" className="py-16 md:py-24 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <Animate animation="reveal" className="mb-14">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-1 h-8 bg-brand-700 rounded-full" />
               <span className="text-brand-700 text-xs font-bold uppercase tracking-widest">Onze partners</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-3">Gecertificeerd & vertrouwd</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-3">Gecertificeerd & vertrouwd</h2>
             <p className="text-gray-500 max-w-lg">
               Wij werken samen met toonaangevende partners om u de beste kwaliteit en service te garanderen.
             </p>
@@ -485,17 +487,17 @@ export default function Home() {
       </section>
 
       {/* ─── CONTACT ─── */}
-      <section id="contact" className="py-24 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-5 gap-14 items-start">
+      <section id="contact" className="py-16 md:py-24 bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-5 gap-10 lg:gap-14 items-start">
             <Animate animation="reveal-left" className="lg:col-span-2">
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-1 h-8 bg-brand-400 rounded-full" />
                   <span className="text-brand-400 text-xs font-bold uppercase tracking-widest">Contact</span>
                 </div>
-                <h2 className="text-4xl font-black text-white mb-4 tracking-tight">Hoe kunnen<br />wij u helpen?</h2>
-                <p className="text-white/50 mb-10 leading-relaxed text-sm">
+                <h2 className="text-3xl sm:text-4xl font-black text-white mb-4 tracking-tight">Hoe kunnen<br />wij u helpen?</h2>
+                <p className="text-white/50 mb-8 leading-relaxed text-sm">
                   Neem contact op voor een gratis en vrijblijvende offerte. Wij reageren altijd binnen 24 uur.
                 </p>
                 <div className="space-y-5">
@@ -582,9 +584,9 @@ export default function Home() {
 
       {/* ─── FOOTER ─── */}
       <footer className="bg-gray-950 text-white py-12 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-10">
-            <div className="md:col-span-1">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-10">
+            <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-3 mb-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/logo.png" alt="Autoschade Bertie Nijhuis logo" className="h-10 w-10 rounded-lg flex-shrink-0" />
@@ -649,7 +651,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="border-t border-white/15 pt-8 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <div className="border-t border-white/15 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">
             <div className="text-white/60 text-xs">
               © 2026 Autoschade Bertie Nijhuis · BOVAG gecertificeerd · Duurzaam Repareren
             </div>
