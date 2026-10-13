@@ -97,10 +97,9 @@ export default function Home() {
       {/* ─── NAVBAR ─── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 nav-blur border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-          <a href="#home" className="flex items-center gap-2">
-            <div className="w-9 h-9 bg-brand-700 rounded-lg flex items-center justify-center flex-shrink-0">
-              <Car className="w-5 h-5 text-white" />
-            </div>
+          <a href="#home" className="flex items-center gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.png" alt="Autoschade Bertie Nijhuis logo" className="h-10 w-10 rounded-lg flex-shrink-0" />
             <div>
               <span className="text-gray-900 font-black text-base leading-none tracking-tight">AUTOSCHADE</span>
               <br />
@@ -538,10 +537,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 mb-10">
             <div className="md:col-span-1">
-              <div className="mb-4">
-                <span className="text-white font-black text-sm">AUTOSCHADE</span>
-                <br />
-                <span className="text-brand-400 font-black text-sm">BERTIE NIJHUIS</span>
+              <div className="flex items-center gap-3 mb-4">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/logo.png" alt="Autoschade Bertie Nijhuis logo" className="h-10 w-10 rounded-lg flex-shrink-0" />
+                <div>
+                  <span className="text-white font-black text-sm leading-none block">AUTOSCHADE</span>
+                  <span className="text-brand-400 font-black text-sm leading-none block">BERTIE NIJHUIS</span>
+                </div>
               </div>
               <p className="text-white/30 text-sm leading-relaxed">
                 IJzersterk in schadewerk. Meer dan 40 jaar familiebedrijf in Denekamp.
