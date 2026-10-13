@@ -161,7 +161,7 @@ export default function Home() {
 
       {/* ─── HERO ─── */}
       {/* ─── HERO ─── */}
-      <section id="home" className="relative flex items-center pt-16 overflow-hidden h-[100svh] sm:h-[620px] lg:h-[680px] max-h-[680px] sm:max-h-none">
+      <section id="home" className="relative flex items-end sm:items-center pt-16 overflow-hidden h-[100svh] sm:h-[620px] lg:h-[680px]">
         {/* Building photo: fixed 680px height, minimal crop (image is 1892×800) */}
         <div className="absolute inset-0 z-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -177,7 +177,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0" style={{ background: "linear-gradient(105deg, rgba(4,8,20,0.85) 0%, rgba(4,8,20,0.60) 50%, rgba(4,8,20,0.20) 100%)" }} />
         {/* Bottom fade to white */}
         <div className="absolute bottom-0 left-0 right-0 h-24 z-10" style={{ background: "linear-gradient(to top, #ffffff, transparent)" }} />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full py-6 sm:py-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full py-8 sm:py-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left */}
             <div>
@@ -187,10 +187,10 @@ export default function Home() {
                 <br />IN SCHADE
                 <br />WERK
               </h1>
-              <p className="hidden sm:block text-white/60 text-base sm:text-lg leading-relaxed max-w-md mb-6">
+              <p className="text-white/60 text-base sm:text-lg leading-relaxed max-w-md mb-6">
                 Familiebedrijf in Denekamp. Vakkundig herstel van alle autoschade. BOVAG gecertificeerd. Duurzaam Repareren.
               </p>
-              <div className="hidden sm:flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4">
                 <a href="#contact" className="btn-primary bg-brand-700 hover:bg-brand-600 text-white px-7 py-3.5 rounded-lg font-bold flex items-center gap-2">
                   Gratis offerte aanvragen <ArrowRight className="w-4 h-4" />
                 </a>
@@ -198,7 +198,7 @@ export default function Home() {
                   Onze diensten <ChevronRight className="w-4 h-4" />
                 </a>
               </div>
-              <div className="hidden sm:flex gap-6 sm:gap-10 mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/10">
+              <div className="flex gap-6 sm:gap-10 mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/10">
                 <div>
                   <div className="text-3xl font-black text-white">40+</div>
                   <div className="text-white/40 text-xs mt-0.5">jaar ervaring</div>
