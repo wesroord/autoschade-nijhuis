@@ -307,10 +307,7 @@ export default function Home() {
                   </div>
                   <div className="p-7 flex flex-col flex-1">
                     <h3 className="text-gray-900 font-bold text-lg mb-3">{service.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed flex-1">{service.description}</p>
-                    <div className="flex items-center gap-1 mt-5 text-brand-700 text-xs font-semibold">
-                      Meer informatie <ChevronRight className="w-3.5 h-3.5" />
-                    </div>
+                    <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
                   </div>
                 </div>
               </Animate>
