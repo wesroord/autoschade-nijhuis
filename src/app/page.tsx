@@ -180,7 +180,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0" style={{ background: "linear-gradient(105deg, rgba(4,8,20,0.85) 0%, rgba(4,8,20,0.60) 50%, rgba(4,8,20,0.20) 100%)" }} />
         {/* Bottom fade to white */}
         <div className="absolute bottom-0 left-0 right-0 h-24 z-10" style={{ background: "linear-gradient(to top, #ffffff, transparent)" }} />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full py-8 sm:py-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-8 pb-24 sm:py-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left */}
             <div>
