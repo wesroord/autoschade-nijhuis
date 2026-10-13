@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Animate from "@/components/AnimateOnScroll";
 import ContactForm from "@/components/ContactForm";
 import CountUp from "@/components/CountUp";
@@ -125,8 +126,7 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 nav-blur border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
           <a href="#home" className="flex items-center gap-3">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.png" alt="Autoschade Bertie Nijhuis logo" className="h-10 w-10 rounded-lg flex-shrink-0" />
+            <Image src="/logo.png" alt="Autoschade Bertie Nijhuis logo" width={40} height={40} className="rounded-lg flex-shrink-0" />
             <div>
               <span className="text-gray-900 font-black text-base leading-none tracking-tight">AUTOSCHADE</span>
               <br />
@@ -168,13 +168,15 @@ export default function Home() {
       <section id="home" className="relative flex items-end sm:items-center pt-16 overflow-hidden h-[calc(100svh-72px)] sm:h-[620px] lg:h-[680px]">
         {/* Building photo: fixed 680px height, minimal crop (image is 1892×800) */}
         <div className="absolute inset-0 z-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/hero.jpg"
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
             style={{ objectPosition: "center 40%", filter: "brightness(0.52)" }}
+            priority
+            sizes="100vw"
           />
         </div>
         {/* Gradient: dark-left for text, fades to transparent on right */}
@@ -301,11 +303,12 @@ export default function Home() {
               <Animate key={service.title} delay={i * 70} animation="reveal">
                 <div className="service-card bg-white border border-gray-150 rounded-2xl overflow-hidden group cursor-default h-full flex flex-col">
                   <div className="relative h-44 overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                   </div>
@@ -569,12 +572,10 @@ export default function Home() {
                 <div className="flex items-center gap-3 mt-8">
                   <span className="text-white/30 text-xs font-semibold uppercase tracking-wide">Volg ons</span>
                   <a href="https://www.instagram.com/autoschadenijhuis/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="opacity-90 hover:opacity-100 transition-opacity">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/instagram.png" alt="Instagram" className="w-8 h-8 object-contain rounded-xl" />
+                    <Image src="/instagram.png" alt="Instagram" width={32} height={32} className="object-contain rounded-xl" />
                   </a>
                   <a href="https://www.facebook.com/autoschadenijhuis/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="opacity-90 hover:opacity-100 transition-opacity">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/facebook.png" alt="Facebook" className="w-8 h-8 object-contain rounded-full" />
+                    <Image src="/facebook.png" alt="Facebook" width={32} height={32} className="object-contain rounded-full" />
                   </a>
                 </div>
               </div>
@@ -591,7 +592,7 @@ export default function Home() {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2413.0!2d7.0106187!3d52.3857758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b81895223a8dc7%3A0x1780e24733beb432!2sAutoschade%20Bertie%20Nijhuis!5e0!3m2!1snl!2snl!4v1728835200000!5m2!1snl!2snl"
                 width="100%"
                 height="320"
-                style={{ border: 0, filter: "invert(90%) hue-rotate(180deg)" }}
+                style={{ border: 0, filter: "invert(90%) hue-rotate(180deg)", contentVisibility: "auto" } as React.CSSProperties}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -619,8 +620,7 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-10">
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-3 mb-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/logo.png" alt="Autoschade Bertie Nijhuis logo" className="h-10 w-10 rounded-lg flex-shrink-0" />
+                <Image src="/logo.png" alt="Autoschade Bertie Nijhuis logo" width={40} height={40} className="rounded-lg flex-shrink-0" />
                 <div>
                   <span className="text-white font-black text-sm leading-none block">AUTOSCHADE</span>
                   <span className="text-brand-400 font-black text-sm leading-none block">BERTIE NIJHUIS</span>
@@ -660,12 +660,10 @@ export default function Home() {
               </ul>
               <div className="flex gap-2 mt-4">
                 <a href="https://www.instagram.com/autoschadenijhuis/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="opacity-75 hover:opacity-100 transition-opacity">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/instagram.png" alt="Instagram" className="w-7 h-7 object-contain rounded-xl" />
+                  <Image src="/instagram.png" alt="Instagram" width={28} height={28} className="object-contain rounded-xl" />
                 </a>
                 <a href="https://www.facebook.com/autoschadenijhuis/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="opacity-75 hover:opacity-100 transition-opacity">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/facebook.png" alt="Facebook" className="w-7 h-7 object-contain rounded-full" />
+                  <Image src="/facebook.png" alt="Facebook" width={28} height={28} className="object-contain rounded-full" />
                 </a>
               </div>
             </div>
