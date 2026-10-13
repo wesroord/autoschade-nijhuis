@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CheckCircle2, Phone } from "lucide-react";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -27,89 +28,82 @@ export default function ContactForm() {
     }
   }
 
+  const inputCls =
+    "w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 text-sm focus:outline-none focus:border-brand-400 focus:ring-1 focus:ring-brand-400 transition-colors";
+  const labelCls = "block text-white/70 text-xs font-semibold uppercase tracking-wide mb-1.5";
+
+  if (status === "success") {
+    return (
+      <div className="glass-card rounded-2xl p-10 text-center">
+        <CheckCircle2 className="w-12 h-12 text-green-400 mx-auto mb-4" />
+        <h4 className="font-black text-white text-xl mb-2">Bericht verstuurd!</h4>
+        <p className="text-white/60 text-sm">Wij nemen binnen 24 uur contact met u op.</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="bg-white rounded-xl p-6 border border-navy-100">
-      <h3 className="font-bold text-navy-900 mb-6 text-lg">Stuur ons een bericht</h3>
-      {status === "success" ? (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-          <div className="text-3xl mb-2">✅</div>
-          <h4 className="font-bold text-green-800 mb-1">Bericht verstuurd!</h4>
-          <p className="text-green-700 text-sm">Wij nemen zo snel mogelijk contact met u op.</p>
+    <div className="glass-card rounded-2xl p-8">
+      <h3 className="font-black text-white text-2xl mb-1">Stuur ons een bericht</h3>
+      <p className="text-white/50 text-sm mb-7">Gratis en vrijblijvend — binnen 24 uur reactie</p>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className={labelCls}>Naam *</label>
+            <input type="text" name="naam" required placeholder="Uw naam" className={inputCls} />
+          </div>
+          <div>
+            <label className={labelCls}>Telefoon</label>
+            <input type="tel" name="telefoon" placeholder="06-12345678" className={inputCls} />
+          </div>
         </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Naam *</label>
-              <input
-                type="text"
-                name="naam"
-                required
-                placeholder="Uw naam"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-navy-600 focus:ring-1 focus:ring-navy-600"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Telefoon</label>
-              <input
-                type="tel"
-                name="telefoon"
-                placeholder="Uw telefoonnummer"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-navy-600 focus:ring-1 focus:ring-navy-600"
-              />
-            </div>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">E-mailadres *</label>
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="uw@email.nl"
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-navy-600 focus:ring-1 focus:ring-navy-600"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Onderwerp</label>
-            <select
-              name="onderwerp"
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-navy-600 focus:ring-1 focus:ring-navy-600 text-gray-700"
-            >
-              <option value="">Selecteer een onderwerp</option>
-              <option>Gratis offerte aanvragen</option>
-              <option>Schadeherstel</option>
-              <option>Spuitwerk / Lakwerk</option>
-              <option>Hagelschade</option>
-              <option>Deukwerk / PDR</option>
-              <option>Caravan / Camper</option>
-              <option>Anders</option>
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Bericht *</label>
-            <textarea
-              name="bericht"
-              required
-              rows={4}
-              placeholder="Omschrijf uw schade of vraag..."
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-navy-600 focus:ring-1 focus:ring-navy-600 resize-none"
-            />
-          </div>
-          {status === "error" && (
-            <p className="text-red-600 text-sm">Er ging iets mis. Bel ons op 0541-354640.</p>
-          )}
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className="w-full bg-navy-900 text-white py-3 rounded-lg font-bold text-sm hover:bg-navy-700 transition-colors disabled:opacity-60"
-          >
-            {status === "loading" ? "Versturen..." : "Bericht versturen →"}
-          </button>
-          <p className="text-xs text-gray-400 text-center">
-            Of bel direct: <a href="tel:0541354640" className="text-navy-600 font-semibold">0541-354640</a>
+        <div>
+          <label className={labelCls}>E-mailadres *</label>
+          <input type="email" name="email" required placeholder="uw@email.nl" className={inputCls} />
+        </div>
+        <div>
+          <label className={labelCls}>Soort schade</label>
+          <select name="onderwerp" className={inputCls + " text-white/70"}>
+            <option value="" className="text-gray-900 bg-white">Selecteer een onderwerp</option>
+            <option className="text-gray-900 bg-white">Gratis offerte aanvragen</option>
+            <option className="text-gray-900 bg-white">Schadeherstel</option>
+            <option className="text-gray-900 bg-white">Spuitwerk / Lakwerk</option>
+            <option className="text-gray-900 bg-white">Hagelschade</option>
+            <option className="text-gray-900 bg-white">Deukwerk / PDR</option>
+            <option className="text-gray-900 bg-white">Caravan / Camper</option>
+            <option className="text-gray-900 bg-white">Anders</option>
+          </select>
+        </div>
+        <div>
+          <label className={labelCls}>Bericht *</label>
+          <textarea
+            name="bericht"
+            required
+            rows={4}
+            placeholder="Omschrijf uw schade of vraag..."
+            className={inputCls + " resize-none"}
+          />
+        </div>
+        {status === "error" && (
+          <p className="text-red-400 text-sm">Er ging iets mis. Bel ons op 0541-354640.</p>
+        )}
+        <button
+          type="submit"
+          disabled={status === "loading"}
+          className="btn-primary w-full bg-white text-brand-800 py-4 rounded-xl font-black text-sm hover:bg-brand-50 transition-colors disabled:opacity-60"
+        >
+          {status === "loading" ? "Versturen..." : "Bericht versturen →"}
+        </button>
+        <div className="flex items-center justify-center gap-2 pt-1">
+          <Phone className="w-3.5 h-3.5 text-brand-400" />
+          <p className="text-xs text-white/40">
+            Of bel direct:{" "}
+            <a href="tel:0541354640" className="text-white/70 font-bold hover:text-white transition-colors">
+              0541-354640
+            </a>
           </p>
-        </form>
-      )}
+        </div>
+      </form>
     </div>
   );
 }

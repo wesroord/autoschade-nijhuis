@@ -1,337 +1,578 @@
+import Animate from "@/components/AnimateOnScroll";
 import ContactForm from "@/components/ContactForm";
+import {
+  Car, Paintbrush, Hammer, CloudSnow, Truck, Shield,
+  Phone, Mail, MapPin, Star, CheckCircle2, Award,
+  Clock, ChevronRight, ArrowRight, Users
+} from "lucide-react";
 
 const services = [
   {
-    icon: "🔧",
+    icon: Car,
     title: "Schadeherstel",
-    description:
-      "Professioneel herstel van alle soorten autoschade. Wij werken nauwkeurig en snel, zodat uw auto er weer als nieuw uitziet.",
+    description: "Vakkundig herstel van alle soorten autoschade. Van kleine deukjes tot grote botsschade — altijd met oog voor detail en kwaliteit.",
   },
   {
-    icon: "🎨",
+    icon: Paintbrush,
     title: "Spuitwerk & Lakwerk",
-    description:
-      "Hoogwaardige lacquering met perfecte kleurmatching. Van kleine krassen tot complete spuitbeurten — altijd een onberispelijk resultaat.",
+    description: "Perfecte kleurmatching met moderne spuittechnologie. Van spot-reparatie tot volledige spuitbeurt — altijd een vlekkeloos resultaat.",
   },
   {
-    icon: "🔨",
+    icon: Hammer,
     title: "Deukwerk & PDR",
-    description:
-      "Deukjes verwijderen zonder schilderwerk? Met Paintless Dent Repair (PDR) herstellen wij kleine deuken snel en kostenbesparend.",
+    description: "Paintless Dent Repair voor snel en kostenbesparend deukherstel zonder schilderwerk. Perfect voor kleine deuken en krassen.",
   },
   {
-    icon: "🌨️",
+    icon: CloudSnow,
     title: "Hagelschade",
-    description:
-      "Hagelschade aan uw auto? Wij herstellen snel en vakkundig alle hagelschade, van klein tot groot, met of zonder schilderwerk.",
+    description: "Specialisten in hagelschadeherstel. Wij beoordelen de schade gratis en herstellen snel en vakkundig, groot of klein.",
   },
   {
-    icon: "🚐",
+    icon: Truck,
     title: "Caravan & Camper",
-    description:
-      "Ook voor schade aan uw caravan of camper bent u bij ons aan het juiste adres. Wij herstellen alle merken en modellen.",
+    description: "Ook voor schade aan uw caravan of camper bent u bij ons aan het juiste adres. Alle merken en modellen.",
   },
   {
-    icon: "🛡️",
+    icon: Shield,
     title: "Steenslag & Parkeerschade",
-    description:
-      "Steenslagschade, bumperdeukjes of parkeerschade? Wij lossen het op — snel, vakkundig en voor een scherpe prijs.",
+    description: "Steenslagschade, bumperdeukjes of parkeerschade? Wij lossen het vakkundig op — snel en voor een scherpe prijs.",
   },
 ];
 
-const usps = [
-  { icon: "✅", title: "Gratis offerte", description: "Altijd vrijblijvend en transparant" },
-  { icon: "🚗", title: "Vervangend vervoer", description: "Gratis leenauto tijdens reparatie" },
-  { icon: "📋", title: "Schadeformulier hulp", description: "Wij helpen met de papieren" },
-  { icon: "📞", title: "24/7 bereikbaar", description: "Ook bij spoed staat u er niet alleen voor" },
+const reviews = [
+  {
+    name: "Jan de Boer",
+    location: "Denekamp",
+    rating: 5,
+    date: "2 weken geleden",
+    text: "Uitstekende service! Na mijn hagelschade was mijn auto binnen een week als nieuw. Echt vakwerk en een vriendelijk team. Hoge aanbeveling!",
+    avatar: "J",
+  },
+  {
+    name: "Maria Scholte",
+    location: "Enschede",
+    rating: 5,
+    date: "1 maand geleden",
+    text: "Super vriendelijk en professioneel. Parkeerschade perfect hersteld, niet meer te zien. Gratis leenauto was heel fijn geregeld. Aanrader!",
+    avatar: "M",
+  },
+  {
+    name: "Kevin Hendriks",
+    location: "Oldenzaal",
+    rating: 5,
+    date: "3 maanden geleden",
+    text: "Al voor de tweede keer hier voor spuitwerk. Perfecte kleurmatching en uitstekende kwaliteit. Eerlijke prijs en snel klaar.",
+    avatar: "K",
+  },
+  {
+    name: "Sandra van Dam",
+    location: "Losser",
+    rating: 5,
+    date: "4 maanden geleden",
+    text: "BOVAG-erkend bedrijf dat het echt waarmaakt. Professioneel van begin tot eind. Ze helpen ook met de schadeformulieren — top!",
+    avatar: "S",
+  },
 ];
+
+const partners = [
+  { name: "BOVAG", description: "Gecertificeerd lid" },
+  { name: "Duurzaam\nRepareren", description: "Gecertificeerd" },
+  { name: "Partner", description: "Binnenkort" },
+  { name: "Partner", description: "Binnenkort" },
+  { name: "Partner", description: "Binnenkort" },
+  { name: "Partner", description: "Binnenkort" },
+];
+
+const usps = [
+  { icon: CheckCircle2, label: "Gratis offerte", sub: "Altijd vrijblijvend" },
+  { icon: Car, label: "Vervangend vervoer", sub: "Gratis leenauto" },
+  { icon: Clock, label: "24/7 bereikbaar", sub: "Ook bij spoed" },
+  { icon: Award, label: "BOVAG gecertificeerd", sub: "Gegarandeerde kwaliteit" },
+];
+
+function Stars({ count }: { count: number }) {
+  return (
+    <div className="flex gap-0.5">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star key={i} className={`w-4 h-4 ${i < count ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`} />
+      ))}
+    </div>
+  );
+}
 
 export default function Home() {
   return (
     <>
-      {/* NAVBAR */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-navy-900 shadow-lg">
-        <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
-          <a href="#home" className="flex items-center gap-3">
+      {/* ─── NAVBAR ─── */}
+      <header className="fixed top-0 left-0 right-0 z-50 nav-blur bg-brand-900/90 border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-18 py-3">
+          <a href="#home" className="flex items-center gap-3 group">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://www.autoschadenijhuis.nl/Autoschade-Nijhuis.jpg"
-              alt="Autoschade Bertie Nijhuis logo"
-              className="h-10 w-auto"
+              src="/logo.png"
+              alt="Autoschade Bertie Nijhuis"
+              className="h-11 w-auto"
             />
+            <div className="hidden sm:block">
+              <span className="text-white font-black text-lg leading-none tracking-tight">AUTOSCHADE</span>
+              <br />
+              <span className="text-brand-400 font-black text-lg leading-none tracking-tight">BERTIE NIJHUIS</span>
+            </div>
           </a>
-          <nav className="hidden md:flex items-center gap-8">
-            {["Diensten", "Over ons", "Contact"].map((item) => (
+          <nav className="hidden lg:flex items-center gap-8">
+            {[
+              { label: "Diensten", href: "#diensten" },
+              { label: "Over ons", href: "#over-ons" },
+              { label: "Reviews", href: "#reviews" },
+              { label: "Partners", href: "#partners" },
+              { label: "Contact", href: "#contact" },
+            ].map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase().replace(" ", "-")}`}
-                className="text-white text-sm font-semibold tracking-wide hover:text-navy-100 transition-colors"
+                key={item.label}
+                href={item.href}
+                className="text-white/80 text-sm font-medium hover:text-white transition-colors tracking-wide"
               >
-                {item}
+                {item.label}
               </a>
             ))}
-            <a
-              href="tel:0541354640"
-              className="bg-white text-navy-900 px-4 py-2 rounded text-sm font-bold hover:bg-navy-100 transition-colors"
-            >
+          </nav>
+          <div className="flex items-center gap-3">
+            <a href="tel:0541354640" className="hidden sm:flex items-center gap-2 text-white/90 text-sm font-semibold hover:text-white transition-colors">
+              <Phone className="w-4 h-4 text-brand-400" />
               0541-354640
             </a>
-          </nav>
-          {/* Mobile */}
-          <a
-            href="tel:0541354640"
-            className="md:hidden bg-white text-navy-900 px-3 py-2 rounded text-sm font-bold"
-          >
-            Bel ons
-          </a>
+            <a
+              href="#contact"
+              className="btn-primary bg-brand-600 hover:bg-brand-500 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-colors"
+            >
+              Schade melden
+            </a>
+          </div>
         </div>
       </header>
 
-      {/* HERO */}
-      <section
-        id="home"
-        className="relative flex items-center justify-center min-h-screen bg-navy-900 pt-16"
-        style={{
-          background: "linear-gradient(135deg, #0d1550 0%, #1B2880 50%, #2B4AD4 100%)",
-        }}
-      >
-        <div className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
-        <div className="relative text-center px-4 max-w-4xl mx-auto">
-          <p className="text-navy-100 text-sm font-semibold tracking-widest uppercase mb-4">
-            Meer dan 40 jaar vakmanschap
-          </p>
-          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight tracking-tight">
-            IJZERSTERK
-            <br />
-            <span className="text-navy-100">IN SCHADEWERK</span>
-          </h1>
-          <p className="text-white/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-            Autoschade Bertie Nijhuis in Denekamp. Familiebedrijf met meer dan 40 jaar ervaring
-            in schadeherstel. BOVAG gecertificeerd. Duurzaam Repareren.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#contact"
-              className="bg-white text-navy-900 px-8 py-4 rounded text-base font-bold hover:bg-navy-100 transition-colors"
-            >
-              Gratis offerte aanvragen
-            </a>
-            <a
-              href="#diensten"
-              className="border-2 border-white text-white px-8 py-4 rounded text-base font-bold hover:bg-white/10 transition-colors"
-            >
-              Onze diensten
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* USPs */}
-      <section className="bg-white py-12 border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {usps.map((usp) => (
-            <div key={usp.title} className="flex flex-col items-center text-center gap-2 p-4">
-              <span className="text-3xl">{usp.icon}</span>
-              <h3 className="font-bold text-navy-900 text-sm">{usp.title}</h3>
-              <p className="text-gray-500 text-xs leading-relaxed">{usp.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* DIENSTEN */}
-      <section id="diensten" className="py-20 bg-navy-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-14">
-            <p className="text-navy-600 text-sm font-semibold tracking-widest uppercase mb-2">Wat wij doen</p>
-            <h2 className="text-4xl font-black text-navy-900 mb-4">Onze Diensten</h2>
-            <p className="text-gray-600 max-w-xl mx-auto">
-              Van kleine parkeerschade tot grote hagelschade — wij herstellen het vakkundig en snel.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service) => (
-              <div
-                key={service.title}
-                className="bg-white rounded-xl p-6 shadow-sm border border-navy-100 hover:shadow-md hover:border-navy-300 transition-all"
-              >
-                <div className="w-12 h-12 bg-navy-100 rounded-lg flex items-center justify-center text-2xl mb-4">
-                  {service.icon}
-                </div>
-                <h3 className="text-lg font-bold text-navy-900 mb-2">{service.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+      {/* ─── HERO ─── */}
+      <section id="home" className="hero-bg min-h-screen flex items-center pt-20 pb-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left */}
+            <div>
+              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <span className="text-white/90 text-xs font-semibold tracking-widest uppercase">Meer dan 40 jaar vakmanschap</span>
               </div>
+              <h1 className="text-6xl md:text-7xl xl:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-6">
+                IJZER
+                <br />
+                <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #B47EDE 0%, #ffffff 100%)" }}>
+                  STERK
+                </span>
+                <br />
+                IN SCHADE
+                <br />
+                WERK
+              </h1>
+              <p className="text-white/70 text-lg leading-relaxed max-w-md mb-10">
+                Familiebedrijf in Denekamp. Vakkundig herstel van alle autoschade. BOVAG gecertificeerd. Duurzaam Repareren.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="#contact"
+                  className="btn-primary bg-brand-600 hover:bg-brand-500 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2"
+                >
+                  Gratis offerte aanvragen
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+                <a
+                  href="#diensten"
+                  className="text-white border border-white/30 hover:border-white/60 hover:bg-white/5 px-8 py-4 rounded-xl font-semibold transition-all flex items-center gap-2"
+                >
+                  Onze diensten
+                  <ChevronRight className="w-4 h-4" />
+                </a>
+              </div>
+              {/* Mini stats */}
+              <div className="flex gap-8 mt-12 pt-8 border-t border-white/10">
+                <div>
+                  <div className="text-3xl font-black text-white">40+</div>
+                  <div className="text-white/50 text-xs font-medium mt-0.5">jaar ervaring</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-black text-white flex items-center gap-1">4.8 <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" /></div>
+                  <div className="text-white/50 text-xs font-medium mt-0.5">Google rating</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-black text-white">100%</div>
+                  <div className="text-white/50 text-xs font-medium mt-0.5">BOVAG kwaliteit</div>
+                </div>
+              </div>
+            </div>
+            {/* Right: Glass card */}
+            <div className="lg:flex justify-end hidden">
+              <div className="glass-card rounded-2xl p-8 w-full max-w-sm">
+                <h3 className="text-white font-black text-2xl mb-2">Schade melden</h3>
+                <p className="text-white/60 text-sm mb-6">Ontvang binnen 24 uur een reactie</p>
+                <div className="space-y-3">
+                  <input
+                    type="text"
+                    placeholder="Uw naam"
+                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40 text-sm focus:outline-none focus:border-brand-400"
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Telefoonnummer"
+                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40 text-sm focus:outline-none focus:border-brand-400"
+                  />
+                  <select className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white/70 text-sm focus:outline-none focus:border-brand-400">
+                    <option value="" className="text-gray-900">Soort schade</option>
+                    <option className="text-gray-900">Schadeherstel</option>
+                    <option className="text-gray-900">Spuitwerk / Lakwerk</option>
+                    <option className="text-gray-900">Hagelschade</option>
+                    <option className="text-gray-900">Deukwerk / PDR</option>
+                    <option className="text-gray-900">Anders</option>
+                  </select>
+                  <a
+                    href="#contact"
+                    className="btn-primary w-full bg-white text-brand-800 py-3 rounded-lg font-black text-sm text-center block hover:bg-brand-50 transition-colors"
+                  >
+                    Direct schade melden →
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 mt-4 pt-4 border-t border-white/10">
+                  <Phone className="w-4 h-4 text-brand-400" />
+                  <span className="text-white/60 text-xs">Of bel direct: </span>
+                  <a href="tel:0541354640" className="text-white text-xs font-bold hover:text-brand-300">0541-354640</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-10" />
+      </section>
+
+      {/* ─── USP BAR ─── */}
+      <section className="bg-white py-10 border-b border-gray-100 relative z-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {usps.map((usp, i) => (
+              <Animate key={usp.label} delay={i * 80} animation="reveal">
+                <div className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-700 transition-colors">
+                    <usp.icon className="w-5 h-5 text-brand-700 group-hover:text-white transition-colors" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900 text-sm leading-tight">{usp.label}</div>
+                    <div className="text-gray-500 text-xs mt-0.5">{usp.sub}</div>
+                  </div>
+                </div>
+              </Animate>
             ))}
           </div>
         </div>
       </section>
 
-      {/* OVER ONS */}
-      <section id="over-ons" className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-navy-600 text-sm font-semibold tracking-widest uppercase mb-2">Over ons</p>
-              <h2 className="text-4xl font-black text-navy-900 mb-6">
-                Familiebedrijf met<br />meer dan 40 jaar<br />ervaring
-              </h2>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                Autoschade Bertie Nijhuis is een professioneel familiebedrijf in Denekamp dat al meer dan
-                40 jaar gespecialiseerd is in het herstellen van alle merken personen- en
-                bedrijfsvoertuigen. Wij staan voor kwaliteit, eerlijkheid en vakmanschap.
-              </p>
-              <p className="text-gray-600 leading-relaxed mb-8">
-                Als BOVAG-gecertificeerd bedrijf werken wij volgens strenge kwaliteitsnormen en zijn wij
-                gecertificeerd voor <strong>Duurzaam Repareren</strong> — milieubewust onderhoud, herstel
-                en restauratie.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <div className="bg-navy-50 border border-navy-200 rounded-lg px-4 py-3 text-center">
-                  <div className="text-2xl font-black text-navy-900">40+</div>
-                  <div className="text-xs text-gray-500 font-medium">jaar ervaring</div>
-                </div>
-                <div className="bg-navy-50 border border-navy-200 rounded-lg px-4 py-3 text-center">
-                  <div className="text-2xl font-black text-navy-900">BOVAG</div>
-                  <div className="text-xs text-gray-500 font-medium">gecertificeerd</div>
-                </div>
-                <div className="bg-navy-50 border border-navy-200 rounded-lg px-4 py-3 text-center">
-                  <div className="text-2xl font-black text-navy-900">🌱</div>
-                  <div className="text-xs text-gray-500 font-medium">Duurzaam Repareren</div>
-                </div>
-                <div className="bg-navy-50 border border-navy-200 rounded-lg px-4 py-3 text-center">
-                  <div className="text-2xl font-black text-navy-900">Alle</div>
-                  <div className="text-xs text-gray-500 font-medium">merken & modellen</div>
-                </div>
-              </div>
+      {/* ─── DIENSTEN ─── */}
+      <section id="diensten" className="py-24 bg-brand-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <Animate animation="reveal" className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-brand-700/50 border border-brand-600/50 rounded-full px-4 py-1.5 mb-4">
+              <span className="text-brand-300 text-xs font-semibold tracking-widest uppercase">Onze specialiteiten</span>
             </div>
-            <div className="bg-navy-900 rounded-2xl p-8 text-white"
-              style={{ background: "linear-gradient(135deg, #1B2880 0%, #2B4AD4 100%)" }}
-            >
-              <h3 className="text-xl font-bold mb-6">Waarom Bertie Nijhuis?</h3>
-              <ul className="space-y-4">
-                {[
-                  "Gratis en vrijblijvende offerte",
-                  "Gratis vervangend vervoer tijdens reparatie",
-                  "Hulp bij het invullen van schadeformulieren",
-                  "24 uur per dag bereikbaar bij spoed",
-                  "BOVAG gecertificeerd — zekerheid en kwaliteit",
-                  "Duurzaam Repareren certificaat",
-                  "Alle merken personen- en bedrijfsvoertuigen",
-                  "Meer dan 40 jaar familiebedrijf in Denekamp",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="text-navy-100 font-bold mt-0.5 flex-shrink-0">✓</span>
-                    <span className="text-white/90 text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section id="contact" className="py-20 bg-navy-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-14">
-            <p className="text-navy-600 text-sm font-semibold tracking-widest uppercase mb-2">Neem contact op</p>
-            <h2 className="text-4xl font-black text-navy-900 mb-4">Hoe kunnen wij u helpen?</h2>
-            <p className="text-gray-600 max-w-xl mx-auto">
-              Vraag een gratis offerte aan of stel uw vraag. Wij reageren zo snel mogelijk.
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">Wat wij voor u doen</h2>
+            <p className="text-white/60 max-w-xl mx-auto text-lg">
+              Van kleine parkeerschade tot complete carrosserieherstel — wij pakken het aan.
             </p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-            {/* Info */}
-            <div className="lg:col-span-2 space-y-6">
-              <div className="bg-white rounded-xl p-6 border border-navy-100">
-                <h3 className="font-bold text-navy-900 mb-4">Contactgegevens</h3>
-                <div className="space-y-3 text-sm text-gray-600">
-                  <div className="flex items-start gap-3">
-                    <span className="text-lg">📍</span>
-                    <div>
-                      <p className="font-semibold text-gray-800">Adres</p>
-                      <p>Ambachtstraat 5</p>
-                      <p>7591 BE Denekamp</p>
-                    </div>
+          </Animate>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {services.map((service, i) => (
+              <Animate key={service.title} delay={i * 80} animation="reveal">
+                <div className="service-card bg-white/5 border border-white/10 rounded-2xl p-7 group cursor-default">
+                  <div className="w-12 h-12 rounded-xl bg-brand-700/50 border border-brand-600/50 flex items-center justify-center mb-5 group-hover:bg-brand-600 transition-colors">
+                    <service.icon className="w-5 h-5 text-brand-300 group-hover:text-white transition-colors" />
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-lg">📞</span>
-                    <div>
-                      <p className="font-semibold text-gray-800">Telefoon</p>
-                      <a href="tel:0541354640" className="text-navy-600 hover:underline font-medium">
-                        0541-354640
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-lg">✉️</span>
-                    <div>
-                      <p className="font-semibold text-gray-800">E-mail</p>
-                      <a href="mailto:info@autoschadenijhuis.nl" className="text-navy-600 hover:underline">
-                        info@autoschadenijhuis.nl
-                      </a>
-                    </div>
+                  <h3 className="text-white font-bold text-lg mb-2">{service.title}</h3>
+                  <p className="text-white/50 text-sm leading-relaxed">{service.description}</p>
+                  <div className="flex items-center gap-1.5 mt-5 text-brand-400 text-xs font-semibold group-hover:text-brand-300 transition-colors">
+                    Meer informatie <ChevronRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
-              </div>
-              <div className="bg-white rounded-xl overflow-hidden border border-navy-100">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2449.1!2d7.0!3d52.37!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b81c2a73d77cd5%3A0x1!2sAmbachtstraat+5%2C+7591+BE+Denekamp!5e0!3m2!1snl!2snl!4v1"
-                  width="100%"
-                  height="200"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Locatie Autoschade Bertie Nijhuis"
-                />
-              </div>
-            </div>
-            {/* Form */}
-            <div className="lg:col-span-3">
-              <ContactForm />
-            </div>
+              </Animate>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="bg-navy-950 text-white py-10">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <img
-                src="https://www.autoschadenijhuis.nl/Autoschade-Nijhuis.jpg"
-                alt="Autoschade Bertie Nijhuis"
-                className="h-10 w-auto mb-3"
-              />
-              <p className="text-white/60 text-sm leading-relaxed">
+      {/* ─── OVER ONS ─── */}
+      <section id="over-ons" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <Animate animation="reveal-left">
+              <div>
+                <div className="inline-flex items-center gap-2 bg-brand-100 rounded-full px-4 py-1.5 mb-6">
+                  <span className="text-brand-700 text-xs font-semibold tracking-widest uppercase">Over ons</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-6 leading-tight">
+                  Familiebedrijf met<br/>
+                  <span className="text-brand-700">meer dan 40 jaar</span><br/>
+                  vakmanschap
+                </h2>
+                <p className="text-gray-600 leading-relaxed mb-6 text-lg">
+                  Autoschade Bertie Nijhuis is een professioneel familiebedrijf in Denekamp dat al meer dan 40 jaar
+                  gespecialiseerd is in het herstellen van alle merken personen- en bedrijfsvoertuigen.
+                </p>
+                <p className="text-gray-600 leading-relaxed mb-8">
+                  Als BOVAG-gecertificeerd bedrijf werken wij volgens strenge kwaliteitsnormen en zijn wij
+                  gecertificeerd voor <strong className="text-brand-700">Duurzaam Repareren</strong> — milieubewust onderhoud,
+                  herstel en restauratie.
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { val: "40+", label: "jaar ervaring" },
+                    { val: "4.8★", label: "Google rating" },
+                    { val: "BOVAG", label: "gecertificeerd" },
+                    { val: "Alle", label: "merken & modellen" },
+                  ].map((stat) => (
+                    <div key={stat.val} className="bg-brand-50 border border-brand-100 rounded-xl p-4">
+                      <div className="text-2xl font-black text-brand-700">{stat.val}</div>
+                      <div className="text-gray-500 text-sm mt-0.5">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Animate>
+            <Animate animation="reveal-right">
+              <div className="bg-brand-900 rounded-3xl p-8 lg:p-10 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-brand-700/20 rounded-full -translate-y-1/2 translate-x-1/2" />
+                <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-800/30 rounded-full translate-y-1/2 -translate-x-1/2" />
+                <div className="relative z-10">
+                  <Users className="w-10 h-10 text-brand-400 mb-6" />
+                  <h3 className="text-white font-bold text-xl mb-6">Waarom kiezen voor ons?</h3>
+                  <ul className="space-y-4">
+                    {[
+                      "Gratis en vrijblijvende offerte",
+                      "Gratis vervangend vervoer tijdens reparatie",
+                      "Hulp bij invullen schadeformulieren",
+                      "24 uur per dag bereikbaar bij spoed",
+                      "BOVAG gecertificeerd — zekerheid & kwaliteit",
+                      "Duurzaam Repareren certificaat",
+                      "Alle merken personen- en bedrijfsvoertuigen",
+                      "Meer dan 40 jaar vertrouwen in Denekamp",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-brand-400 flex-shrink-0 mt-0.5" />
+                        <span className="text-white/80 text-sm leading-snug">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Animate>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── GOOGLE REVIEWS ─── */}
+      <section id="reviews" className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <Animate animation="reveal" className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-yellow-50 border border-yellow-200 rounded-full px-4 py-1.5 mb-4">
+              <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+              <span className="text-yellow-800 text-xs font-semibold tracking-widest uppercase">Google Reviews</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-4">
+              Wat onze klanten zeggen
+            </h2>
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <div className="flex gap-1">
+                {[1,2,3,4,5].map(i => <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />)}
+              </div>
+              <span className="text-3xl font-black text-gray-900">4.8</span>
+              <span className="text-gray-500 text-sm">op Google</span>
+            </div>
+            <p className="text-gray-500 text-sm">Gebaseerd op Google Reviews</p>
+          </Animate>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {reviews.map((review, i) => (
+              <Animate key={review.name} delay={i * 80} animation="reveal-scale">
+                <div className="review-card bg-white rounded-2xl p-6 border border-gray-100 h-full flex flex-col">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-brand-700 flex items-center justify-center text-white font-black text-sm flex-shrink-0">
+                      {review.avatar}
+                    </div>
+                    <div>
+                      <div className="font-bold text-gray-900 text-sm leading-tight">{review.name}</div>
+                      <div className="text-gray-400 text-xs">{review.location}</div>
+                    </div>
+                    {/* Google G icon */}
+                    <div className="ml-auto">
+                      <svg className="w-5 h-5" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <Stars count={review.rating} />
+                  <p className="text-gray-600 text-sm leading-relaxed mt-3 flex-1">&ldquo;{review.text}&rdquo;</p>
+                  <div className="text-gray-400 text-xs mt-4">{review.date}</div>
+                </div>
+              </Animate>
+            ))}
+          </div>
+          <Animate animation="reveal" className="text-center mt-10">
+            <a
+              href="https://www.google.com/search?q=autoschade+bertie+nijhuis#lrd=0x0:0x0,1,,,,"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-gray-300 hover:border-brand-500 hover:text-brand-700 text-gray-700 px-6 py-3 rounded-xl text-sm font-semibold transition-all"
+            >
+              Alle Google Reviews bekijken
+              <ChevronRight className="w-4 h-4" />
+            </a>
+          </Animate>
+        </div>
+      </section>
+
+      {/* ─── PARTNERS ─── */}
+      <section id="partners" className="py-24 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-6">
+          <Animate animation="reveal" className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-brand-100 rounded-full px-4 py-1.5 mb-4">
+              <span className="text-brand-700 text-xs font-semibold tracking-widest uppercase">Onze partners</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-4">
+              Gecertificeerd & vertrouwd
+            </h2>
+            <p className="text-gray-500 max-w-lg mx-auto">
+              Wij werken samen met toonaangevende partners om u de beste kwaliteit en service te garanderen.
+            </p>
+          </Animate>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {/* BOVAG - real partner */}
+            <Animate delay={0} animation="reveal-scale">
+              <div className="partner-card border-2 border-gray-200 hover:border-brand-300 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 min-h-[120px] bg-white">
+                <div className="text-[#C8102E] font-black text-2xl tracking-tight leading-none">BOVAG</div>
+                <div className="text-gray-400 text-xs text-center font-medium">Gecertificeerd lid</div>
+              </div>
+            </Animate>
+            {/* Duurzaam Repareren */}
+            <Animate delay={80} animation="reveal-scale">
+              <div className="partner-card border-2 border-gray-200 hover:border-brand-300 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 min-h-[120px] bg-white">
+                <div className="text-green-600 font-black text-sm text-center leading-tight">DUURZAAM<br/>REPAREREN</div>
+                <div className="text-gray-400 text-xs text-center font-medium">Gecertificeerd</div>
+              </div>
+            </Animate>
+            {/* Empty partner slots */}
+            {[3, 4, 5, 6].map((n, i) => (
+              <Animate key={n} delay={(i + 2) * 80} animation="reveal-scale">
+                <div className="border-2 border-dashed border-gray-200 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 min-h-[120px] bg-gray-50">
+                  <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+                    <span className="text-gray-400 text-lg font-bold">+</span>
+                  </div>
+                  <div className="text-gray-400 text-xs text-center font-medium">Partner<br/>binnenkort</div>
+                </div>
+              </Animate>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CONTACT ─── */}
+      <section id="contact" className="py-24 bg-brand-900 relative overflow-hidden">
+        <div className="absolute inset-0 hero-bg opacity-50" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-5 gap-14 items-start">
+            {/* Left info */}
+            <Animate animation="reveal-left" className="lg:col-span-2">
+              <div>
+                <div className="inline-flex items-center gap-2 bg-brand-700/50 border border-brand-600/50 rounded-full px-4 py-1.5 mb-6">
+                  <span className="text-brand-300 text-xs font-semibold tracking-widest uppercase">Contact</span>
+                </div>
+                <h2 className="text-4xl font-black text-white mb-4 tracking-tight">Hoe kunnen<br/>wij u helpen?</h2>
+                <p className="text-white/60 mb-10 leading-relaxed">
+                  Neem contact op voor een gratis en vrijblijvende offerte. Wij reageren altijd binnen 24 uur.
+                </p>
+                <div className="space-y-5">
+                  {[
+                    { icon: MapPin, label: "Adres", val: "Ambachtstraat 5\n7591 BE Denekamp" },
+                    { icon: Phone, label: "Telefoon", val: "0541-354640", href: "tel:0541354640" },
+                    { icon: Mail, label: "E-mail", val: "info@autoschadenijhuis.nl", href: "mailto:info@autoschadenijhuis.nl" },
+                  ].map((item) => (
+                    <div key={item.label} className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-brand-700/50 border border-brand-600/30 flex items-center justify-center flex-shrink-0">
+                        <item.icon className="w-4 h-4 text-brand-300" />
+                      </div>
+                      <div>
+                        <div className="text-white/50 text-xs font-semibold uppercase tracking-wide mb-1">{item.label}</div>
+                        {item.href ? (
+                          <a href={item.href} className="text-white text-sm font-semibold hover:text-brand-300 transition-colors whitespace-pre-line">
+                            {item.val}
+                          </a>
+                        ) : (
+                          <div className="text-white text-sm font-semibold whitespace-pre-line">{item.val}</div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Animate>
+            {/* Right form */}
+            <Animate animation="reveal-right" className="lg:col-span-3">
+              <ContactForm />
+            </Animate>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FOOTER ─── */}
+      <footer className="bg-brand-950 text-white py-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-8 mb-10">
+            <div className="md:col-span-1">
+              <div className="mb-4">
+                <span className="text-white font-black text-base">AUTOSCHADE</span>
+                <br />
+                <span className="text-brand-400 font-black text-base">BERTIE NIJHUIS</span>
+              </div>
+              <p className="text-white/40 text-sm leading-relaxed">
                 IJzersterk in schadewerk. Meer dan 40 jaar familiebedrijf in Denekamp.
               </p>
             </div>
             <div>
-              <h4 className="font-bold mb-3 text-sm">Diensten</h4>
-              <ul className="space-y-1 text-white/60 text-sm">
-                {["Schadeherstel", "Spuitwerk & Lakwerk", "Deukwerk & PDR", "Hagelschade", "Caravan & Camper"].map((s) => (
-                  <li key={s}>{s}</li>
+              <h4 className="font-bold text-sm mb-4 text-white/80 uppercase tracking-wide">Diensten</h4>
+              <ul className="space-y-2 text-white/40 text-sm">
+                {["Schadeherstel", "Spuitwerk & Lakwerk", "Deukwerk & PDR", "Hagelschade", "Caravan & Camper"].map(s => (
+                  <li key={s} className="hover:text-white/70 cursor-default transition-colors">{s}</li>
                 ))}
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-3 text-sm">Contact</h4>
-              <ul className="space-y-1 text-white/60 text-sm">
+              <h4 className="font-bold text-sm mb-4 text-white/80 uppercase tracking-wide">Informatie</h4>
+              <ul className="space-y-2 text-white/40 text-sm">
+                {["Over ons", "Reviews", "Partners", "Contact"].map(s => (
+                  <li key={s}><a href={`#${s.toLowerCase()}`} className="hover:text-white/70 transition-colors">{s}</a></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-sm mb-4 text-white/80 uppercase tracking-wide">Contact</h4>
+              <ul className="space-y-2 text-white/40 text-sm">
                 <li>Ambachtstraat 5, Denekamp</li>
-                <li><a href="tel:0541354640" className="hover:text-white">0541-354640</a></li>
-                <li><a href="mailto:info@autoschadenijhuis.nl" className="hover:text-white">info@autoschadenijhuis.nl</a></li>
+                <li><a href="tel:0541354640" className="hover:text-white transition-colors">0541-354640</a></li>
+                <li><a href="mailto:info@autoschadenijhuis.nl" className="hover:text-white transition-colors">info@autoschadenijhuis.nl</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-white/10 pt-6 text-center text-white/40 text-xs">
-            © 2026 Autoschade Bertie Nijhuis · KvK Denekamp · BOVAG gecertificeerd
+          <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="text-white/30 text-xs">
+              © 2026 Autoschade Bertie Nijhuis · BOVAG gecertificeerd · Duurzaam Repareren
+            </div>
+            <div className="flex items-center gap-4 text-white/30 text-xs">
+              <span>Denekamp, Overijssel</span>
+            </div>
           </div>
         </div>
       </footer>
