@@ -1,5 +1,4 @@
 "use client";
-import { createPortal } from "react-dom";
 import { useEffect, useRef, useState } from "react";
 
 const steps = [
@@ -15,13 +14,8 @@ export default function StappenSection() {
   const desktopRef = useRef<HTMLDivElement>(null);
 
   /* ── Mobile ── */
-  const [mounted,    setMounted]    = useState(false);
-  const [showCard,   setShowCard]   = useState(false);
   const [mobileCard, setMobileCard] = useState(0);
-  const [cardH,      setCardH]      = useState(210);
   const trackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => setMounted(true), []);
 
   /* Desktop connector animation */
   useEffect(() => {
@@ -35,19 +29,15 @@ export default function StappenSection() {
     return () => obs.disconnect();
   }, []);
 
-  /* Mobile: RAF loop tracks scroll position of the track-div.
-     createPortal is used (same pattern as StickyMobileCTA/MobileNav) so
-     overflow-x:hidden on body can never interfere with the card display. */
+  /* Mobile: set track height + RAF scroll tracker.
+     Body uses overflow-x:clip (not hidden) so sticky works correctly. */
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
 
-    /* Size setup — pure px, no svh dependency */
     const setup = () => {
-      if (window.innerWidth >= 1024) return;         // desktop: skip
-      const vh = window.innerHeight;
-      track.style.height = `${Math.round(vh * 2.4)}px`;
-      setCardH(Math.min(250, Math.max(175, Math.round(vh * 0.27))));
+      if (window.innerWidth >= 1024) return;
+      track.style.height = `${Math.round(window.innerHeight * 2.4)}px`;
     };
     setup();
     window.addEventListener("resize", setup, { passive: true });
@@ -56,24 +46,17 @@ export default function StappenSection() {
     let looping = false;
 
     const tick = () => {
-      const rect  = track.getBoundingClientRect();
-      const vh    = window.innerHeight;
-      const inView = rect.top < vh && rect.bottom > 0;
-      setShowCard(inView);
-
-      if (inView) {
-        const scrolledIn = Math.max(0, -rect.top);
-        const scrollable = Math.max(1, track.offsetHeight - vh);
-        const card = scrolledIn >= scrollable
-          ? 3
-          : Math.min(3, Math.floor((scrolledIn / scrollable) * 4));
-        setMobileCard(prev => prev !== card ? card : prev);
-      }
-
+      const rect = track.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const scrolledIn = Math.max(0, -rect.top);
+      const scrollable = Math.max(1, track.offsetHeight - vh);
+      const card = scrolledIn >= scrollable
+        ? 3
+        : Math.min(3, Math.floor((scrolledIn / scrollable) * 4));
+      setMobileCard(prev => prev !== card ? card : prev);
       if (looping) rafId = requestAnimationFrame(tick);
     };
 
-    /* Start loop only while track is near the viewport */
     const vis = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -82,10 +65,9 @@ export default function StappenSection() {
         } else {
           looping = false;
           cancelAnimationFrame(rafId);
-          setShowCard(false);
         }
       },
-      { rootMargin: "300px 0px 300px 0px" }
+      { rootMargin: "100px 0px 100px 0px" }
     );
     vis.observe(track);
 
@@ -96,50 +78,6 @@ export default function StappenSection() {
       window.removeEventListener("resize", setup);
     };
   }, []);
-
-  /* ── Card UI (rendered both inline for desktop and via portal for mobile) ── */
-  const MobileCards = (
-    <div
-      className="fixed z-[40]"
-      style={{ top: "72px", left: "16px", right: "16px", height: `${cardH}px` }}
-    >
-      {steps.map((step, i) => (
-        <div
-          key={step.n}
-          className="absolute inset-0 bg-white rounded-2xl border border-gray-200 overflow-hidden"
-          style={{
-            zIndex: 10 + i,
-            transform: i <= mobileCard ? "translateY(0)" : "translateY(100vh)",
-            transition: "transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1)",
-            boxShadow: i === mobileCard
-              ? "0 8px 32px rgba(0,0,0,0.12)"
-              : "0 2px 8px rgba(0,0,0,0.06)",
-          }}
-        >
-          <div className="h-1 bg-brand-700" />
-          <div className="p-5">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-xl bg-brand-50 border-2 border-brand-200 flex items-center justify-center flex-shrink-0">
-                <span className="text-brand-700 font-black text-xs">{step.n}</span>
-              </div>
-              <h3 className="font-black text-gray-900 text-lg">{step.title}</h3>
-            </div>
-            <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
-            <div className="flex gap-1.5 mt-4">
-              {steps.map((_, j) => (
-                <div
-                  key={j}
-                  className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
-                    j <= i ? "bg-brand-600" : "bg-gray-100"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
 
   return (
     <div>
@@ -176,13 +114,47 @@ export default function StappenSection() {
         </div>
       </div>
 
-      {/* ── MOBILE (below lg): invisible scroll track ──
-          Height set via JS. The actual cards are rendered via createPortal
-          so overflow-x:hidden on body cannot block them. */}
-      <div ref={trackRef} className="lg:hidden" />
-
-      {/* Portal: only render after mount and while track is in viewport */}
-      {mounted && showCard && createPortal(MobileCards, document.body)}
+      {/* ── MOBILE: tall track + sticky card container ──
+          overflow-x:clip on body (not hidden) means sticky works correctly here. */}
+      <div ref={trackRef} className="lg:hidden relative">
+        <div className="sticky top-[72px] overflow-hidden h-[clamp(175px,27vh,250px)]">
+          {steps.map((step, i) => (
+            <div
+              key={step.n}
+              className="absolute inset-0 bg-white rounded-2xl border border-gray-200 overflow-hidden"
+              style={{
+                zIndex: 10 + i,
+                transform: i <= mobileCard ? "translateY(0)" : "translateY(100vh)",
+                transition: "transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                boxShadow: i === mobileCard
+                  ? "0 8px 32px rgba(0,0,0,0.12)"
+                  : "0 2px 8px rgba(0,0,0,0.06)",
+              }}
+            >
+              <div className="h-1 bg-brand-700" />
+              <div className="p-5">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-brand-50 border-2 border-brand-200 flex items-center justify-center flex-shrink-0">
+                    <span className="text-brand-700 font-black text-xs">{step.n}</span>
+                  </div>
+                  <h3 className="font-black text-gray-900 text-lg">{step.title}</h3>
+                </div>
+                <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
+                <div className="flex gap-1.5 mt-4">
+                  {steps.map((_, j) => (
+                    <div
+                      key={j}
+                      className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
+                        j <= i ? "bg-brand-600" : "bg-gray-100"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
