@@ -8,16 +8,13 @@ const steps = [
   { n: "04", title: "Auto klaar",           desc: "Uw auto is gereinigd en rijklaar. Wij leveren hem persoonlijk bij u af of u haalt hem op." },
 ];
 
+/* Each card's peek height above the next card (px) */
+const PEEK = 52;
+
 export default function StappenSection() {
-  /* ── Desktop ── */
   const [desktopActive, setDesktopActive] = useState(false);
   const desktopRef = useRef<HTMLDivElement>(null);
 
-  /* ── Mobile ── */
-  const [mobileCard, setMobileCard] = useState(0);
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  /* Desktop connector animation */
   useEffect(() => {
     const el = desktopRef.current;
     if (!el) return;
@@ -27,56 +24,6 @@ export default function StappenSection() {
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
-
-  /* Mobile: set track height + RAF scroll tracker.
-     Body uses overflow-x:clip (not hidden) so sticky works correctly. */
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const setup = () => {
-      if (window.innerWidth >= 1024) return;
-      track.style.height = `${Math.round(window.innerHeight * 2.4)}px`;
-    };
-    setup();
-    window.addEventListener("resize", setup, { passive: true });
-
-    let rafId: number;
-    let looping = false;
-
-    const tick = () => {
-      const rect = track.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const scrolledIn = Math.max(0, -rect.top);
-      const scrollable = Math.max(1, track.offsetHeight - vh);
-      const card = scrolledIn >= scrollable
-        ? 3
-        : Math.min(3, Math.floor((scrolledIn / scrollable) * 4));
-      setMobileCard(prev => prev !== card ? card : prev);
-      if (looping) rafId = requestAnimationFrame(tick);
-    };
-
-    const vis = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          looping = true;
-          rafId = requestAnimationFrame(tick);
-        } else {
-          looping = false;
-          cancelAnimationFrame(rafId);
-        }
-      },
-      { rootMargin: "100px 0px 100px 0px" }
-    );
-    vis.observe(track);
-
-    return () => {
-      looping = false;
-      cancelAnimationFrame(rafId);
-      vis.disconnect();
-      window.removeEventListener("resize", setup);
-    };
   }, []);
 
   return (
@@ -114,46 +61,39 @@ export default function StappenSection() {
         </div>
       </div>
 
-      {/* ── MOBILE: tall track + sticky card container ──
-          overflow-x:clip on body (not hidden) means sticky works correctly here. */}
-      <div ref={trackRef} className="lg:hidden relative">
-        <div className="sticky top-[72px] overflow-hidden h-[clamp(175px,27vh,250px)]">
-          {steps.map((step, i) => (
-            <div
-              key={step.n}
-              className="absolute inset-0 bg-white rounded-2xl border border-gray-200 overflow-hidden"
-              style={{
-                zIndex: 10 + i,
-                transform: i <= mobileCard ? "translateY(0)" : "translateY(100vh)",
-                transition: "transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1)",
-                boxShadow: i === mobileCard
-                  ? "0 8px 32px rgba(0,0,0,0.12)"
-                  : "0 2px 8px rgba(0,0,0,0.06)",
-              }}
-            >
-              <div className="h-1 bg-brand-700" />
-              <div className="p-5">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-brand-50 border-2 border-brand-200 flex items-center justify-center flex-shrink-0">
-                    <span className="text-brand-700 font-black text-xs">{step.n}</span>
-                  </div>
-                  <h3 className="font-black text-gray-900 text-lg">{step.title}</h3>
-                </div>
-                <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
-                <div className="flex gap-1.5 mt-4">
-                  {steps.map((_, j) => (
-                    <div
-                      key={j}
-                      className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
-                        j <= i ? "bg-brand-600" : "bg-gray-100"
-                      }`}
-                    />
-                  ))}
-                </div>
+      {/* ── MOBILE: CSS sticky stack ──
+          Each card has position:sticky with an increasing top offset.
+          As the user scrolls, each card slides up OVER the previous one,
+          which peeks PEEK px above it. Pure CSS — no JavaScript needed.
+          Fallback (if sticky broken): cards show as a normal vertical list. */}
+      <div className="lg:hidden">
+        {steps.map((step, i) => (
+          <div
+            key={step.n}
+            className="sticky bg-white rounded-2xl overflow-hidden border border-gray-100"
+            style={{
+              top: `${72 + i * PEEK}px`,
+              zIndex: 10 + i,
+              marginBottom: i < steps.length - 1 ? "12px" : "0",
+              boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
+            }}
+          >
+            <div className="h-1 bg-brand-700" />
+            <div className="px-5 pt-4 pb-6">
+              <span className="text-brand-700 font-black text-lg mb-3 block">{step.n}</span>
+              <h3 className="font-black text-gray-900 text-xl mb-2">{step.title}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
+              <div className="flex gap-1.5 mt-5">
+                {steps.map((_, j) => (
+                  <div
+                    key={j}
+                    className={`h-1 flex-1 rounded-full ${j <= i ? "bg-brand-600" : "bg-gray-100"}`}
+                  />
+                ))}
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );
