@@ -97,9 +97,10 @@ export default function Home() {
       {/* ─── NAVBAR ─── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 nav-blur border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-          <a href="#home" className="flex items-center gap-3">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.png" alt="Autoschade Bertie Nijhuis" className="h-10 w-auto" />
+          <a href="#home" className="flex items-center gap-2">
+            <div className="w-9 h-9 bg-brand-700 rounded-lg flex items-center justify-center flex-shrink-0">
+              <Car className="w-5 h-5 text-white" />
+            </div>
             <div>
               <span className="text-gray-900 font-black text-base leading-none tracking-tight">AUTOSCHADE</span>
               <br />
@@ -136,7 +137,22 @@ export default function Home() {
       </header>
 
       {/* ─── HERO ─── */}
-      <section id="home" className="hero-bg min-h-screen flex items-center pt-16">
+      <section id="home" className="relative min-h-screen flex items-center pt-16 overflow-hidden">
+        {/* Blurred building photo */}
+        <div className="absolute inset-0 z-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/hero.jpg"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover scale-105"
+            style={{ filter: "blur(3px) brightness(0.32)" }}
+          />
+        </div>
+        {/* Subtle grid overlay */}
+        <div className="absolute inset-0 z-0" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
+        {/* Bottom fade to white */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 z-10" style={{ background: "linear-gradient(to top, #ffffff, transparent)" }} />
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-20 lg:py-28">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left */}
@@ -485,6 +501,33 @@ export default function Home() {
               <ContactForm />
             </Animate>
           </div>
+
+          {/* Google Maps */}
+          <Animate animation="reveal" className="mt-14">
+            <div className="rounded-2xl overflow-hidden border border-white/10" style={{ height: "320px" }}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2413.0!2d7.0106187!3d52.3857758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b81895223a8dc7%3A0x1780e24733beb432!2sAutoschade%20Bertie%20Nijhuis!5e0!3m2!1snl!2snl!4v1728835200000!5m2!1snl!2snl"
+                width="100%"
+                height="320"
+                style={{ border: 0, filter: "invert(90%) hue-rotate(180deg)" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Autoschade Bertie Nijhuis locatie"
+              />
+            </div>
+            <p className="text-white/30 text-xs mt-3 text-center">
+              Ambachtstraat 5, 7591 BE Denekamp ·{" "}
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=Autoschade+Bertie+Nijhuis,+Ambachtstraat+5,+7591+BE+Denekamp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand-400 hover:text-brand-300 font-semibold transition-colors"
+              >
+                Route plannen →
+              </a>
+            </p>
+          </Animate>
         </div>
       </section>
 
