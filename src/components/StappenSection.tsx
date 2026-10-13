@@ -67,7 +67,7 @@ export default function StappenSection() {
         {steps.map((step, i) => (
           <div
             key={step.n}
-            style={{ minHeight: i < steps.length - 1 ? "35vh" : "auto" }}
+            style={{ minHeight: i < steps.length - 1 ? "100svh" : "auto" }}
           >
             <div
               className="sticky bg-white rounded-2xl border border-gray-200 overflow-hidden"
