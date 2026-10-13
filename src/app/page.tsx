@@ -579,7 +579,21 @@ export default function Home() {
             <div className="text-white/20 text-xs">
               © 2026 Autoschade Bertie Nijhuis · BOVAG gecertificeerd · Duurzaam Repareren
             </div>
-            <div className="text-white/20 text-xs">Denekamp, Overijssel</div>
+            <div className="flex items-center gap-4 text-white/20 text-xs">
+              <span>Denekamp, Overijssel</span>
+              <span>·</span>
+              <span>
+                Webdesign:{" "}
+                <a
+                  href="https://conneqtai.nl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/40 hover:text-white/70 transition-colors font-semibold"
+                >
+                  Conneqtai
+                </a>
+              </span>
+            </div>
           </div>
         </div>
       </footer>
