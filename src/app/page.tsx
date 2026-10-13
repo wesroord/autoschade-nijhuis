@@ -137,23 +137,25 @@ export default function Home() {
       </header>
 
       {/* ─── HERO ─── */}
-      <section id="home" className="relative min-h-screen flex items-center pt-16 overflow-hidden">
-        {/* Building photo — no blur, sharp */}
+      {/* Height = image aspect ratio (1892×800 = 2.365:1), min 480px for mobile */}
+      <section id="home" className="relative flex items-center pt-16 overflow-hidden"
+        style={{ height: "clamp(480px, calc(100vw / 2.365), 900px)" }}>
+        {/* Full photo, no zoom/crop */}
         <div className="absolute inset-0 z-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/hero.jpg"
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover"
-            style={{ objectPosition: "center 30%", filter: "brightness(0.55)" }}
+            className="w-full h-full object-contain"
+            style={{ objectPosition: "center center", filter: "brightness(0.6)", background: "#0a0f1e" }}
           />
         </div>
-        {/* Left-to-right gradient: dark on left (text readable), lighter on right (photo visible) */}
-        <div className="absolute inset-0 z-0" style={{ background: "linear-gradient(100deg, rgba(5,10,25,0.75) 0%, rgba(5,10,25,0.50) 50%, rgba(5,10,25,0.20) 100%)" }} />
+        {/* Dark gradient on the left so text is readable */}
+        <div className="absolute inset-0 z-0" style={{ background: "linear-gradient(100deg, rgba(5,10,25,0.80) 0%, rgba(5,10,25,0.55) 45%, rgba(5,10,25,0.15) 100%)" }} />
         {/* Bottom fade to white */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 z-10" style={{ background: "linear-gradient(to top, #ffffff, transparent)" }} />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-20 lg:py-28">
+        <div className="absolute bottom-0 left-0 right-0 h-24 z-10" style={{ background: "linear-gradient(to top, #ffffff, transparent)" }} />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-12 lg:py-16">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left */}
             <div>
