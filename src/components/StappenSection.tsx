@@ -9,13 +9,16 @@ const steps = [
 ];
 
 export default function StappenSection() {
+  /* ── Desktop ── */
   const [desktopActive, setDesktopActive] = useState(false);
   const desktopRef = useRef<HTMLDivElement>(null);
 
+  /* ── Mobile ── */
   const [mobileCard, setMobileCard] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
 
-  // Desktop: connector animation on scroll-into-view
+  /* Desktop: fire once when connector scrolls into view */
   useEffect(() => {
     const el = desktopRef.current;
     if (!el) return;
@@ -27,33 +30,66 @@ export default function StappenSection() {
     return () => obs.disconnect();
   }, []);
 
-  // Mobile: map scroll progress through the track to active card index
+  /* Mobile: set heights in px (avoids svh support issues) and use RAF
+     so we don't depend on scroll events firing on any specific element. */
   useEffect(() => {
     const track = trackRef.current;
-    if (!track) return;
+    const sticky = stickyRef.current;
+    if (!track || !sticky) return;
 
-    const onScroll = () => {
+    const setHeights = () => {
+      const vh = window.innerHeight;
+      track.style.height = `${Math.round(vh * 2.4)}px`;   // 2.4 screens of scroll space
+      sticky.style.height = `${Math.min(260, Math.max(190, Math.round(vh * 0.28)))}px`;
+    };
+    setHeights();
+    window.addEventListener("resize", setHeights, { passive: true });
+
+    /* RAF loop — read position every frame, no scroll events needed */
+    let rafId: number;
+    let looping = false;
+
+    const tick = () => {
       const rect = track.getBoundingClientRect();
       const scrolledIn = -rect.top;
       const scrollable = Math.max(1, track.offsetHeight - window.innerHeight);
 
-      if (scrolledIn <= 0) { setMobileCard(0); return; }
-      if (scrolledIn >= scrollable) { setMobileCard(3); return; }
+      let card: number;
+      if (scrolledIn <= 0) card = 0;
+      else if (scrolledIn >= scrollable) card = 3;
+      else card = Math.min(3, Math.floor((scrolledIn / scrollable) * 4));
 
-      const progress = scrolledIn / scrollable;
-      setMobileCard(Math.min(3, Math.floor(progress * 4)));
+      setMobileCard(prev => (prev !== card ? card : prev));
+      if (looping) rafId = requestAnimationFrame(tick);
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    /* Only run the RAF loop while the track is near the viewport */
+    const vis = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          looping = true;
+          rafId = requestAnimationFrame(tick);
+        } else {
+          looping = false;
+          cancelAnimationFrame(rafId);
+        }
+      },
+      { rootMargin: "300px 0px 300px 0px" }
+    );
+    vis.observe(track);
+
+    return () => {
+      looping = false;
+      cancelAnimationFrame(rafId);
+      vis.disconnect();
+      window.removeEventListener("resize", setHeights);
+    };
   }, []);
 
   return (
     <div>
       {/* ── DESKTOP (lg+): horizontal with animated connector ── */}
       <div ref={desktopRef} className="hidden lg:block relative">
-        {/* Connector track — right: calc(25% - 3rem) exact for 4-col gap-8 grid */}
         <div className="absolute top-6 h-px z-0" style={{ left: "1.5rem", right: "calc(25% - 3rem)" }}>
           <div className="absolute inset-0 bg-gray-200" />
           <div
@@ -86,13 +122,14 @@ export default function StappenSection() {
       </div>
 
       {/* ── MOBILE (below lg): scroll-driven stacking cards ──
-          The track div is tall to create scroll space.
-          The sticky inner div holds all cards stacked via absolute positioning.
-          A scroll listener maps progress → mobileCard index → translateY transitions. */}
-      <div ref={trackRef} className="lg:hidden relative" style={{ height: "240svh" }}>
+          trackRef creates scroll space (height set in px via JS).
+          stickyRef holds all cards stacked on top of each other.
+          RAF loop maps scroll progress → mobileCard → translateY. */}
+      <div ref={trackRef} className="lg:hidden relative">
         <div
+          ref={stickyRef}
           className="sticky overflow-hidden"
-          style={{ top: "72px", height: "clamp(190px, 28svh, 260px)" }}
+          style={{ top: "72px" }}
         >
           {steps.map((step, i) => (
             <div
