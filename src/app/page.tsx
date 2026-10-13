@@ -426,10 +426,15 @@ export default function Home() {
               <span className="text-gray-400 text-sm">gemiddeld op Google</span>
             </div>
           </Animate>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-5">
             {reviews.map((review, i) => (
-              <Animate key={review.name} delay={i * 70} animation="reveal-scale">
-                <div className="review-card bg-white rounded-2xl p-6 border border-gray-100 h-full flex flex-col">
+              <div
+                key={review.name}
+                className="sticky md:static"
+                style={{ top: `${72 + i * 52}px`, zIndex: 10 + i, marginBottom: i < reviews.length - 1 ? "12px" : "0" }}
+              >
+              <Animate delay={i * 70} animation="reveal-scale">
+                <div className="review-card bg-white rounded-2xl p-6 border border-gray-100 h-full flex flex-col" style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.10)" }}>
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-full bg-brand-700 flex items-center justify-center text-white font-black text-sm flex-shrink-0">
                       {review.avatar}
@@ -450,6 +455,7 @@ export default function Home() {
                   <div className="text-gray-300 text-xs mt-4">{review.date}</div>
                 </div>
               </Animate>
+              </div>
             ))}
           </div>
           <Animate animation="reveal" className="mt-8">
