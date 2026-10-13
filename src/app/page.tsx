@@ -3,39 +3,39 @@ import ContactForm from "@/components/ContactForm";
 import {
   Car, Paintbrush, Hammer, CloudSnow, Truck, Shield,
   Phone, Mail, MapPin, Star, CheckCircle2, Award,
-  Clock, ChevronRight, ArrowRight, Users
+  Clock, ChevronRight, ArrowRight, Users,
 } from "lucide-react";
 
 const services = [
   {
     icon: Car,
     title: "Schadeherstel",
-    description: "Vakkundig herstel van alle soorten autoschade. Van kleine deukjes tot grote botsschade — altijd met oog voor detail en kwaliteit.",
+    description: "Vakkundig herstel van alle soorten autoschade. Van kleine deukjes tot grote botsschade — altijd met oog voor detail.",
   },
   {
     icon: Paintbrush,
     title: "Spuitwerk & Lakwerk",
-    description: "Perfecte kleurmatching met moderne spuittechnologie. Van spot-reparatie tot volledige spuitbeurt — altijd een vlekkeloos resultaat.",
+    description: "Perfecte kleurmatching met moderne spuittechnologie. Van spot-reparatie tot volledige spuitbeurt.",
   },
   {
     icon: Hammer,
     title: "Deukwerk & PDR",
-    description: "Paintless Dent Repair voor snel en kostenbesparend deukherstel zonder schilderwerk. Perfect voor kleine deuken en krassen.",
+    description: "Paintless Dent Repair voor snel en kostenbesparend deukherstel zonder schilderwerk.",
   },
   {
     icon: CloudSnow,
     title: "Hagelschade",
-    description: "Specialisten in hagelschadeherstel. Wij beoordelen de schade gratis en herstellen snel en vakkundig, groot of klein.",
+    description: "Specialisten in hagelschadeherstel. Gratis beoordeling, snelle en vakkundige afhandeling.",
   },
   {
     icon: Truck,
     title: "Caravan & Camper",
-    description: "Ook voor schade aan uw caravan of camper bent u bij ons aan het juiste adres. Alle merken en modellen.",
+    description: "Ook voor schade aan uw caravan of camper bent u bij ons aan het juiste adres. Alle merken.",
   },
   {
     icon: Shield,
     title: "Steenslag & Parkeerschade",
-    description: "Steenslagschade, bumperdeukjes of parkeerschade? Wij lossen het vakkundig op — snel en voor een scherpe prijs.",
+    description: "Steenslagschade, bumperdeukjes of parkeerschade? Snel opgelost voor een scherpe prijs.",
   },
 ];
 
@@ -45,7 +45,7 @@ const reviews = [
     location: "Denekamp",
     rating: 5,
     date: "2 weken geleden",
-    text: "Uitstekende service! Na mijn hagelschade was mijn auto binnen een week als nieuw. Echt vakwerk en een vriendelijk team. Hoge aanbeveling!",
+    text: "Uitstekende service! Na mijn hagelschade was mijn auto binnen een week als nieuw. Echt vakwerk en een vriendelijk team.",
     avatar: "J",
   },
   {
@@ -53,7 +53,7 @@ const reviews = [
     location: "Enschede",
     rating: 5,
     date: "1 maand geleden",
-    text: "Super vriendelijk en professioneel. Parkeerschade perfect hersteld, niet meer te zien. Gratis leenauto was heel fijn geregeld. Aanrader!",
+    text: "Super vriendelijk en professioneel. Parkeerschade perfect hersteld, niet meer te zien. Gratis leenauto heel fijn geregeld.",
     avatar: "M",
   },
   {
@@ -69,32 +69,23 @@ const reviews = [
     location: "Losser",
     rating: 5,
     date: "4 maanden geleden",
-    text: "BOVAG-erkend bedrijf dat het echt waarmaakt. Professioneel van begin tot eind. Ze helpen ook met de schadeformulieren — top!",
+    text: "BOVAG-erkend bedrijf dat het echt waarmaakt. Professioneel van begin tot eind. Ze helpen ook met de schadeformulieren.",
     avatar: "S",
   },
 ];
 
-const partners = [
-  { name: "BOVAG", description: "Gecertificeerd lid" },
-  { name: "Duurzaam\nRepareren", description: "Gecertificeerd" },
-  { name: "Partner", description: "Binnenkort" },
-  { name: "Partner", description: "Binnenkort" },
-  { name: "Partner", description: "Binnenkort" },
-  { name: "Partner", description: "Binnenkort" },
-];
-
 const usps = [
-  { icon: CheckCircle2, label: "Gratis offerte", sub: "Altijd vrijblijvend" },
-  { icon: Car, label: "Vervangend vervoer", sub: "Gratis leenauto" },
-  { icon: Clock, label: "24/7 bereikbaar", sub: "Ook bij spoed" },
-  { icon: Award, label: "BOVAG gecertificeerd", sub: "Gegarandeerde kwaliteit" },
+  { icon: CheckCircle2, label: "Gratis offerte",       sub: "Altijd vrijblijvend" },
+  { icon: Car,          label: "Vervangend vervoer",   sub: "Gratis leenauto" },
+  { icon: Clock,        label: "24/7 bereikbaar",       sub: "Ook bij spoed" },
+  { icon: Award,        label: "BOVAG gecertificeerd", sub: "Gegarandeerde kwaliteit" },
 ];
 
 function Stars({ count }: { count: number }) {
   return (
     <div className="flex gap-0.5">
       {Array.from({ length: 5 }).map((_, i) => (
-        <Star key={i} className={`w-4 h-4 ${i < count ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`} />
+        <Star key={i} className={`w-4 h-4 ${i < count ? "fill-yellow-400 text-yellow-400" : "text-gray-200"}`} />
       ))}
     </div>
   );
@@ -104,47 +95,40 @@ export default function Home() {
   return (
     <>
       {/* ─── NAVBAR ─── */}
-      <header className="fixed top-0 left-0 right-0 z-50 nav-blur bg-brand-900/90 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-18 py-3">
-          <a href="#home" className="flex items-center gap-3 group">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 nav-blur border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+          <a href="#home" className="flex items-center gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo.png"
-              alt="Autoschade Bertie Nijhuis"
-              className="h-11 w-auto"
-            />
-            <div className="hidden sm:block">
-              <span className="text-white font-black text-lg leading-none tracking-tight">AUTOSCHADE</span>
+            <img src="/logo.png" alt="Autoschade Bertie Nijhuis" className="h-10 w-auto" />
+            <div>
+              <span className="text-gray-900 font-black text-base leading-none tracking-tight">AUTOSCHADE</span>
               <br />
-              <span className="text-brand-400 font-black text-lg leading-none tracking-tight">BERTIE NIJHUIS</span>
+              <span className="text-brand-700 font-black text-base leading-none tracking-tight">BERTIE NIJHUIS</span>
             </div>
           </a>
           <nav className="hidden lg:flex items-center gap-8">
             {[
-              { label: "Diensten", href: "#diensten" },
+              { label: "Diensten",  href: "#diensten" },
               { label: "Over ons", href: "#over-ons" },
-              { label: "Reviews", href: "#reviews" },
+              { label: "Reviews",  href: "#reviews" },
               { label: "Partners", href: "#partners" },
-              { label: "Contact", href: "#contact" },
+              { label: "Contact",  href: "#contact" },
             ].map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-white/80 text-sm font-medium hover:text-white transition-colors tracking-wide"
+                className="text-gray-600 text-sm font-medium hover:text-gray-900 transition-colors"
               >
                 {item.label}
               </a>
             ))}
           </nav>
-          <div className="flex items-center gap-3">
-            <a href="tel:0541354640" className="hidden sm:flex items-center gap-2 text-white/90 text-sm font-semibold hover:text-white transition-colors">
-              <Phone className="w-4 h-4 text-brand-400" />
+          <div className="flex items-center gap-4">
+            <a href="tel:0541354640" className="hidden sm:flex items-center gap-1.5 text-gray-700 text-sm font-semibold hover:text-gray-900 transition-colors">
+              <Phone className="w-4 h-4 text-brand-700" />
               0541-354640
             </a>
-            <a
-              href="#contact"
-              className="btn-primary bg-brand-600 hover:bg-brand-500 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-colors"
-            >
+            <a href="#contact" className="btn-primary bg-brand-700 hover:bg-brand-600 text-white px-5 py-2.5 rounded-lg text-sm font-bold">
               Schade melden
             </a>
           </div>
@@ -152,118 +136,105 @@ export default function Home() {
       </header>
 
       {/* ─── HERO ─── */}
-      <section id="home" className="hero-bg min-h-screen flex items-center pt-20 pb-12">
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+      <section id="home" className="hero-bg min-h-screen flex items-center pt-16">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-20 lg:py-28">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left */}
             <div>
-              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="text-white/90 text-xs font-semibold tracking-widest uppercase">Meer dan 40 jaar vakmanschap</span>
+              <div className="inline-flex items-center gap-2 bg-brand-700/20 border border-brand-700/30 rounded-full px-4 py-1.5 mb-7">
+                <div className="w-2 h-2 bg-brand-400 rounded-full animate-pulse" />
+                <span className="text-brand-200 text-xs font-semibold tracking-widest uppercase">Meer dan 40 jaar vakmanschap</span>
               </div>
-              <h1 className="text-6xl md:text-7xl xl:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-6">
+              <h1 className="text-5xl md:text-6xl xl:text-7xl font-black text-white leading-[0.95] tracking-tighter mb-6">
                 IJZER
-                <br />
-                <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #B47EDE 0%, #ffffff 100%)" }}>
-                  STERK
-                </span>
-                <br />
-                IN SCHADE
-                <br />
-                WERK
+                <span className="text-brand-400">STERK</span>
+                <br />IN SCHADE
+                <br />WERK
               </h1>
-              <p className="text-white/70 text-lg leading-relaxed max-w-md mb-10">
+              <p className="text-white/60 text-lg leading-relaxed max-w-md mb-10">
                 Familiebedrijf in Denekamp. Vakkundig herstel van alle autoschade. BOVAG gecertificeerd. Duurzaam Repareren.
               </p>
               <div className="flex flex-wrap gap-4">
-                <a
-                  href="#contact"
-                  className="btn-primary bg-brand-600 hover:bg-brand-500 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2"
-                >
-                  Gratis offerte aanvragen
-                  <ArrowRight className="w-4 h-4" />
+                <a href="#contact" className="btn-primary bg-brand-700 hover:bg-brand-600 text-white px-7 py-3.5 rounded-lg font-bold flex items-center gap-2">
+                  Gratis offerte aanvragen <ArrowRight className="w-4 h-4" />
                 </a>
-                <a
-                  href="#diensten"
-                  className="text-white border border-white/30 hover:border-white/60 hover:bg-white/5 px-8 py-4 rounded-xl font-semibold transition-all flex items-center gap-2"
-                >
-                  Onze diensten
-                  <ChevronRight className="w-4 h-4" />
+                <a href="#diensten" className="text-white/80 border border-white/20 hover:border-white/40 hover:bg-white/5 px-7 py-3.5 rounded-lg font-semibold transition-all flex items-center gap-2">
+                  Onze diensten <ChevronRight className="w-4 h-4" />
                 </a>
               </div>
-              {/* Mini stats */}
-              <div className="flex gap-8 mt-12 pt-8 border-t border-white/10">
+              <div className="flex gap-10 mt-12 pt-8 border-t border-white/10">
                 <div>
                   <div className="text-3xl font-black text-white">40+</div>
-                  <div className="text-white/50 text-xs font-medium mt-0.5">jaar ervaring</div>
+                  <div className="text-white/40 text-xs mt-0.5">jaar ervaring</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-black text-white flex items-center gap-1">4.8 <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" /></div>
-                  <div className="text-white/50 text-xs font-medium mt-0.5">Google rating</div>
+                  <div className="flex items-center gap-1 text-3xl font-black text-white">
+                    4.8 <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                  </div>
+                  <div className="text-white/40 text-xs mt-0.5">Google rating</div>
                 </div>
                 <div>
                   <div className="text-3xl font-black text-white">100%</div>
-                  <div className="text-white/50 text-xs font-medium mt-0.5">BOVAG kwaliteit</div>
+                  <div className="text-white/40 text-xs mt-0.5">BOVAG kwaliteit</div>
                 </div>
               </div>
             </div>
-            {/* Right: Glass card */}
-            <div className="lg:flex justify-end hidden">
+
+            {/* Right — white card on dark hero */}
+            <div className="hidden lg:flex justify-end">
               <div className="glass-card rounded-2xl p-8 w-full max-w-sm">
-                <h3 className="text-white font-black text-2xl mb-2">Schade melden</h3>
-                <p className="text-white/60 text-sm mb-6">Ontvang binnen 24 uur een reactie</p>
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-1 h-7 bg-brand-700 rounded-full" />
+                  <h3 className="text-gray-900 font-black text-xl">Schade melden</h3>
+                </div>
+                <p className="text-gray-500 text-sm mb-6 pl-3">Ontvang binnen 24 uur een reactie</p>
                 <div className="space-y-3">
                   <input
                     type="text"
                     placeholder="Uw naam"
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40 text-sm focus:outline-none focus:border-brand-400"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
                   />
                   <input
                     type="tel"
                     placeholder="Telefoonnummer"
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40 text-sm focus:outline-none focus:border-brand-400"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
                   />
-                  <select className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white/70 text-sm focus:outline-none focus:border-brand-400">
-                    <option value="" className="text-gray-900">Soort schade</option>
-                    <option className="text-gray-900">Schadeherstel</option>
-                    <option className="text-gray-900">Spuitwerk / Lakwerk</option>
-                    <option className="text-gray-900">Hagelschade</option>
-                    <option className="text-gray-900">Deukwerk / PDR</option>
-                    <option className="text-gray-900">Anders</option>
+                  <select className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-500 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500">
+                    <option value="">Soort schade</option>
+                    <option>Schadeherstel</option>
+                    <option>Spuitwerk / Lakwerk</option>
+                    <option>Hagelschade</option>
+                    <option>Deukwerk / PDR</option>
+                    <option>Anders</option>
                   </select>
-                  <a
-                    href="#contact"
-                    className="btn-primary w-full bg-white text-brand-800 py-3 rounded-lg font-black text-sm text-center block hover:bg-brand-50 transition-colors"
-                  >
+                  <a href="#contact" className="btn-primary w-full bg-brand-700 hover:bg-brand-600 text-white py-3 rounded-lg font-bold text-sm text-center block">
                     Direct schade melden →
                   </a>
                 </div>
-                <div className="flex items-center gap-2 mt-4 pt-4 border-t border-white/10">
-                  <Phone className="w-4 h-4 text-brand-400" />
-                  <span className="text-white/60 text-xs">Of bel direct: </span>
-                  <a href="tel:0541354640" className="text-white text-xs font-bold hover:text-brand-300">0541-354640</a>
+                <div className="flex items-center gap-2 mt-4 pt-4 border-t border-gray-100">
+                  <Phone className="w-4 h-4 text-brand-700" />
+                  <span className="text-gray-400 text-xs">Of bel:</span>
+                  <a href="tel:0541354640" className="text-gray-700 text-xs font-bold hover:text-brand-700">0541-354640</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-10" />
       </section>
 
       {/* ─── USP BAR ─── */}
-      <section className="bg-white py-10 border-b border-gray-100 relative z-20">
+      <section className="bg-white py-10 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {usps.map((usp, i) => (
-              <Animate key={usp.label} delay={i * 80} animation="reveal">
+              <Animate key={usp.label} delay={i * 70} animation="reveal">
                 <div className="flex items-center gap-4 group">
-                  <div className="w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-700 transition-colors">
+                  <div className="w-11 h-11 rounded-xl bg-brand-50 border border-brand-100 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-700 transition-colors">
                     <usp.icon className="w-5 h-5 text-brand-700 group-hover:text-white transition-colors" />
                   </div>
                   <div>
                     <div className="font-bold text-gray-900 text-sm leading-tight">{usp.label}</div>
-                    <div className="text-gray-500 text-xs mt-0.5">{usp.sub}</div>
+                    <div className="text-gray-400 text-xs mt-0.5">{usp.sub}</div>
                   </div>
                 </div>
               </Animate>
@@ -273,27 +244,28 @@ export default function Home() {
       </section>
 
       {/* ─── DIENSTEN ─── */}
-      <section id="diensten" className="py-24 bg-brand-900">
+      <section id="diensten" className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
-          <Animate animation="reveal" className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-brand-700/50 border border-brand-600/50 rounded-full px-4 py-1.5 mb-4">
-              <span className="text-brand-300 text-xs font-semibold tracking-widest uppercase">Onze specialiteiten</span>
+          <Animate animation="reveal" className="mb-14">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-1 h-8 bg-brand-700 rounded-full" />
+              <span className="text-brand-700 text-xs font-bold uppercase tracking-widest">Onze specialiteiten</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">Wat wij voor u doen</h2>
-            <p className="text-white/60 max-w-xl mx-auto text-lg">
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-3">Wat wij voor u doen</h2>
+            <p className="text-gray-500 max-w-xl text-lg">
               Van kleine parkeerschade tot complete carrosserieherstel — wij pakken het aan.
             </p>
           </Animate>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((service, i) => (
-              <Animate key={service.title} delay={i * 80} animation="reveal">
-                <div className="service-card bg-white/5 border border-white/10 rounded-2xl p-7 group cursor-default">
-                  <div className="w-12 h-12 rounded-xl bg-brand-700/50 border border-brand-600/50 flex items-center justify-center mb-5 group-hover:bg-brand-600 transition-colors">
-                    <service.icon className="w-5 h-5 text-brand-300 group-hover:text-white transition-colors" />
+              <Animate key={service.title} delay={i * 70} animation="reveal">
+                <div className="service-card bg-white border border-gray-150 rounded-2xl p-7 group cursor-default h-full">
+                  <div className="w-11 h-11 rounded-xl bg-brand-50 border border-brand-100 flex items-center justify-center mb-5 group-hover:bg-brand-700 transition-colors">
+                    <service.icon className="w-5 h-5 text-brand-700 group-hover:text-white transition-colors" />
                   </div>
-                  <h3 className="text-white font-bold text-lg mb-2">{service.title}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{service.description}</p>
-                  <div className="flex items-center gap-1.5 mt-5 text-brand-400 text-xs font-semibold group-hover:text-brand-300 transition-colors">
+                  <h3 className="text-gray-900 font-bold text-lg mb-2">{service.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
+                  <div className="flex items-center gap-1 mt-5 text-brand-700 text-xs font-semibold">
                     Meer informatie <ChevronRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
@@ -309,31 +281,32 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <Animate animation="reveal-left">
               <div>
-                <div className="inline-flex items-center gap-2 bg-brand-100 rounded-full px-4 py-1.5 mb-6">
-                  <span className="text-brand-700 text-xs font-semibold tracking-widest uppercase">Over ons</span>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-1 h-8 bg-brand-700 rounded-full" />
+                  <span className="text-brand-700 text-xs font-bold uppercase tracking-widest">Over ons</span>
                 </div>
                 <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-6 leading-tight">
-                  Familiebedrijf met<br/>
-                  <span className="text-brand-700">meer dan 40 jaar</span><br/>
+                  Familiebedrijf met<br />
+                  <span className="text-brand-700">meer dan 40 jaar</span><br />
                   vakmanschap
                 </h2>
-                <p className="text-gray-600 leading-relaxed mb-6 text-lg">
+                <p className="text-gray-600 leading-relaxed mb-5 text-lg">
                   Autoschade Bertie Nijhuis is een professioneel familiebedrijf in Denekamp dat al meer dan 40 jaar
                   gespecialiseerd is in het herstellen van alle merken personen- en bedrijfsvoertuigen.
                 </p>
-                <p className="text-gray-600 leading-relaxed mb-8">
+                <p className="text-gray-500 leading-relaxed mb-8 text-sm">
                   Als BOVAG-gecertificeerd bedrijf werken wij volgens strenge kwaliteitsnormen en zijn wij
-                  gecertificeerd voor <strong className="text-brand-700">Duurzaam Repareren</strong> — milieubewust onderhoud,
+                  gecertificeerd voor <strong className="text-gray-700">Duurzaam Repareren</strong> — milieubewust
                   herstel en restauratie.
                 </p>
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { val: "40+", label: "jaar ervaring" },
-                    { val: "4.8★", label: "Google rating" },
+                    { val: "40+",   label: "jaar ervaring" },
+                    { val: "4.8★",  label: "Google rating" },
                     { val: "BOVAG", label: "gecertificeerd" },
-                    { val: "Alle", label: "merken & modellen" },
+                    { val: "Alle",  label: "merken & modellen" },
                   ].map((stat) => (
-                    <div key={stat.val} className="bg-brand-50 border border-brand-100 rounded-xl p-4">
+                    <div key={stat.val} className="bg-gray-50 border border-gray-200 rounded-xl p-4">
                       <div className="text-2xl font-black text-brand-700">{stat.val}</div>
                       <div className="text-gray-500 text-sm mt-0.5">{stat.label}</div>
                     </div>
@@ -342,13 +315,12 @@ export default function Home() {
               </div>
             </Animate>
             <Animate animation="reveal-right">
-              <div className="bg-brand-900 rounded-3xl p-8 lg:p-10 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-brand-700/20 rounded-full -translate-y-1/2 translate-x-1/2" />
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-800/30 rounded-full translate-y-1/2 -translate-x-1/2" />
+              <div className="bg-gray-900 rounded-2xl p-8 lg:p-10 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-brand-700/10 rounded-full -translate-y-1/2 translate-x-1/2" />
                 <div className="relative z-10">
-                  <Users className="w-10 h-10 text-brand-400 mb-6" />
+                  <Users className="w-9 h-9 text-brand-400 mb-6" />
                   <h3 className="text-white font-bold text-xl mb-6">Waarom kiezen voor ons?</h3>
-                  <ul className="space-y-4">
+                  <ul className="space-y-3.5">
                     {[
                       "Gratis en vrijblijvende offerte",
                       "Gratis vervangend vervoer tijdens reparatie",
@@ -360,8 +332,8 @@ export default function Home() {
                       "Meer dan 40 jaar vertrouwen in Denekamp",
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-brand-400 flex-shrink-0 mt-0.5" />
-                        <span className="text-white/80 text-sm leading-snug">{item}</span>
+                        <CheckCircle2 className="w-4.5 h-4.5 text-brand-400 flex-shrink-0 mt-0.5" />
+                        <span className="text-white/70 text-sm leading-snug">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -373,63 +345,58 @@ export default function Home() {
       </section>
 
       {/* ─── GOOGLE REVIEWS ─── */}
-      <section id="reviews" className="py-24 bg-gray-50">
+      <section id="reviews" className="py-24 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
-          <Animate animation="reveal" className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-yellow-50 border border-yellow-200 rounded-full px-4 py-1.5 mb-4">
-              <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
-              <span className="text-yellow-800 text-xs font-semibold tracking-widest uppercase">Google Reviews</span>
+          <Animate animation="reveal" className="mb-14">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-1 h-8 bg-yellow-400 rounded-full" />
+              <span className="text-gray-600 text-xs font-bold uppercase tracking-widest">Google Reviews</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-4">
-              Wat onze klanten zeggen
-            </h2>
-            <div className="flex items-center justify-center gap-3 mb-2">
+            <div className="flex items-end gap-5 mb-2">
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">Wat onze klanten zeggen</h2>
+            </div>
+            <div className="flex items-center gap-3 mt-3">
               <div className="flex gap-1">
-                {[1,2,3,4,5].map(i => <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />)}
+                {[1,2,3,4,5].map(i => <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />)}
               </div>
-              <span className="text-3xl font-black text-gray-900">4.8</span>
-              <span className="text-gray-500 text-sm">op Google</span>
+              <span className="text-2xl font-black text-gray-900">4.8</span>
+              <span className="text-gray-400 text-sm">gemiddeld op Google</span>
             </div>
-            <p className="text-gray-500 text-sm">Gebaseerd op Google Reviews</p>
           </Animate>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {reviews.map((review, i) => (
-              <Animate key={review.name} delay={i * 80} animation="reveal-scale">
+              <Animate key={review.name} delay={i * 70} animation="reveal-scale">
                 <div className="review-card bg-white rounded-2xl p-6 border border-gray-100 h-full flex flex-col">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-full bg-brand-700 flex items-center justify-center text-white font-black text-sm flex-shrink-0">
                       {review.avatar}
                     </div>
-                    <div>
-                      <div className="font-bold text-gray-900 text-sm leading-tight">{review.name}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-bold text-gray-900 text-sm truncate">{review.name}</div>
                       <div className="text-gray-400 text-xs">{review.location}</div>
                     </div>
-                    {/* Google G icon */}
-                    <div className="ml-auto">
-                      <svg className="w-5 h-5" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                      </svg>
-                    </div>
+                    <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
+                      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                      <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
                   </div>
                   <Stars count={review.rating} />
                   <p className="text-gray-600 text-sm leading-relaxed mt-3 flex-1">&ldquo;{review.text}&rdquo;</p>
-                  <div className="text-gray-400 text-xs mt-4">{review.date}</div>
+                  <div className="text-gray-300 text-xs mt-4">{review.date}</div>
                 </div>
               </Animate>
             ))}
           </div>
-          <Animate animation="reveal" className="text-center mt-10">
+          <Animate animation="reveal" className="mt-8">
             <a
-              href="https://www.google.com/search?q=autoschade+bertie+nijhuis#lrd=0x0:0x0,1,,,,"
+              href="https://www.google.com/search?q=autoschade+bertie+nijhuis"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-gray-300 hover:border-brand-500 hover:text-brand-700 text-gray-700 px-6 py-3 rounded-xl text-sm font-semibold transition-all"
+              className="inline-flex items-center gap-2 border border-gray-300 hover:border-brand-500 hover:text-brand-700 text-gray-600 px-6 py-3 rounded-xl text-sm font-semibold transition-all"
             >
-              Alle Google Reviews bekijken
-              <ChevronRight className="w-4 h-4" />
+              Alle Google Reviews bekijken <ChevronRight className="w-4 h-4" />
             </a>
           </Animate>
         </div>
@@ -438,40 +405,36 @@ export default function Home() {
       {/* ─── PARTNERS ─── */}
       <section id="partners" className="py-24 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
-          <Animate animation="reveal" className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-brand-100 rounded-full px-4 py-1.5 mb-4">
-              <span className="text-brand-700 text-xs font-semibold tracking-widest uppercase">Onze partners</span>
+          <Animate animation="reveal" className="mb-14">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-1 h-8 bg-brand-700 rounded-full" />
+              <span className="text-brand-700 text-xs font-bold uppercase tracking-widest">Onze partners</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-4">
-              Gecertificeerd & vertrouwd
-            </h2>
-            <p className="text-gray-500 max-w-lg mx-auto">
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-3">Gecertificeerd & vertrouwd</h2>
+            <p className="text-gray-500 max-w-lg">
               Wij werken samen met toonaangevende partners om u de beste kwaliteit en service te garanderen.
             </p>
           </Animate>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {/* BOVAG - real partner */}
             <Animate delay={0} animation="reveal-scale">
-              <div className="partner-card border-2 border-gray-200 hover:border-brand-300 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 min-h-[120px] bg-white">
-                <div className="text-[#C8102E] font-black text-2xl tracking-tight leading-none">BOVAG</div>
+              <div className="partner-card border-2 border-gray-200 hover:border-brand-300 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 min-h-[110px] bg-white">
+                <div className="text-[#C8102E] font-black text-2xl tracking-tight">BOVAG</div>
                 <div className="text-gray-400 text-xs text-center font-medium">Gecertificeerd lid</div>
               </div>
             </Animate>
-            {/* Duurzaam Repareren */}
-            <Animate delay={80} animation="reveal-scale">
-              <div className="partner-card border-2 border-gray-200 hover:border-brand-300 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 min-h-[120px] bg-white">
-                <div className="text-green-600 font-black text-sm text-center leading-tight">DUURZAAM<br/>REPAREREN</div>
+            <Animate delay={70} animation="reveal-scale">
+              <div className="partner-card border-2 border-gray-200 hover:border-brand-300 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 min-h-[110px] bg-white">
+                <div className="text-green-700 font-black text-sm text-center leading-tight">DUURZAAM<br />REPAREREN</div>
                 <div className="text-gray-400 text-xs text-center font-medium">Gecertificeerd</div>
               </div>
             </Animate>
-            {/* Empty partner slots */}
-            {[3, 4, 5, 6].map((n, i) => (
-              <Animate key={n} delay={(i + 2) * 80} animation="reveal-scale">
-                <div className="border-2 border-dashed border-gray-200 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 min-h-[120px] bg-gray-50">
+            {[1,2,3,4].map((n, i) => (
+              <Animate key={n} delay={(i + 2) * 70} animation="reveal-scale">
+                <div className="border-2 border-dashed border-gray-200 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 min-h-[110px] bg-gray-50">
                   <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-                    <span className="text-gray-400 text-lg font-bold">+</span>
+                    <span className="text-gray-400 text-lg font-bold leading-none">+</span>
                   </div>
-                  <div className="text-gray-400 text-xs text-center font-medium">Partner<br/>binnenkort</div>
+                  <div className="text-gray-400 text-xs text-center font-medium">Partner<br />binnenkort</div>
                 </div>
               </Animate>
             ))}
@@ -480,32 +443,31 @@ export default function Home() {
       </section>
 
       {/* ─── CONTACT ─── */}
-      <section id="contact" className="py-24 bg-brand-900 relative overflow-hidden">
-        <div className="absolute inset-0 hero-bg opacity-50" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <section id="contact" className="py-24 bg-gray-900">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-5 gap-14 items-start">
-            {/* Left info */}
             <Animate animation="reveal-left" className="lg:col-span-2">
               <div>
-                <div className="inline-flex items-center gap-2 bg-brand-700/50 border border-brand-600/50 rounded-full px-4 py-1.5 mb-6">
-                  <span className="text-brand-300 text-xs font-semibold tracking-widest uppercase">Contact</span>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-1 h-8 bg-brand-400 rounded-full" />
+                  <span className="text-brand-400 text-xs font-bold uppercase tracking-widest">Contact</span>
                 </div>
-                <h2 className="text-4xl font-black text-white mb-4 tracking-tight">Hoe kunnen<br/>wij u helpen?</h2>
-                <p className="text-white/60 mb-10 leading-relaxed">
+                <h2 className="text-4xl font-black text-white mb-4 tracking-tight">Hoe kunnen<br />wij u helpen?</h2>
+                <p className="text-white/50 mb-10 leading-relaxed text-sm">
                   Neem contact op voor een gratis en vrijblijvende offerte. Wij reageren altijd binnen 24 uur.
                 </p>
                 <div className="space-y-5">
                   {[
-                    { icon: MapPin, label: "Adres", val: "Ambachtstraat 5\n7591 BE Denekamp" },
-                    { icon: Phone, label: "Telefoon", val: "0541-354640", href: "tel:0541354640" },
-                    { icon: Mail, label: "E-mail", val: "info@autoschadenijhuis.nl", href: "mailto:info@autoschadenijhuis.nl" },
+                    { icon: MapPin, label: "Adres",    val: "Ambachtstraat 5\n7591 BE Denekamp" },
+                    { icon: Phone,  label: "Telefoon", val: "0541-354640", href: "tel:0541354640" },
+                    { icon: Mail,   label: "E-mail",   val: "info@autoschadenijhuis.nl", href: "mailto:info@autoschadenijhuis.nl" },
                   ].map((item) => (
                     <div key={item.label} className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-brand-700/50 border border-brand-600/30 flex items-center justify-center flex-shrink-0">
-                        <item.icon className="w-4 h-4 text-brand-300" />
+                      <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                        <item.icon className="w-4 h-4 text-brand-400" />
                       </div>
                       <div>
-                        <div className="text-white/50 text-xs font-semibold uppercase tracking-wide mb-1">{item.label}</div>
+                        <div className="text-white/30 text-xs font-semibold uppercase tracking-wide mb-1">{item.label}</div>
                         {item.href ? (
                           <a href={item.href} className="text-white text-sm font-semibold hover:text-brand-300 transition-colors whitespace-pre-line">
                             {item.val}
@@ -519,7 +481,6 @@ export default function Home() {
                 </div>
               </div>
             </Animate>
-            {/* Right form */}
             <Animate animation="reveal-right" className="lg:col-span-3">
               <ContactForm />
             </Animate>
@@ -528,51 +489,54 @@ export default function Home() {
       </section>
 
       {/* ─── FOOTER ─── */}
-      <footer className="bg-brand-950 text-white py-12">
+      <footer className="bg-gray-950 text-white py-12 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 mb-10">
             <div className="md:col-span-1">
               <div className="mb-4">
-                <span className="text-white font-black text-base">AUTOSCHADE</span>
+                <span className="text-white font-black text-sm">AUTOSCHADE</span>
                 <br />
-                <span className="text-brand-400 font-black text-base">BERTIE NIJHUIS</span>
+                <span className="text-brand-400 font-black text-sm">BERTIE NIJHUIS</span>
               </div>
-              <p className="text-white/40 text-sm leading-relaxed">
+              <p className="text-white/30 text-sm leading-relaxed">
                 IJzersterk in schadewerk. Meer dan 40 jaar familiebedrijf in Denekamp.
               </p>
             </div>
             <div>
-              <h4 className="font-bold text-sm mb-4 text-white/80 uppercase tracking-wide">Diensten</h4>
-              <ul className="space-y-2 text-white/40 text-sm">
+              <h4 className="font-bold text-xs mb-4 text-white/50 uppercase tracking-widest">Diensten</h4>
+              <ul className="space-y-2 text-white/30 text-sm">
                 {["Schadeherstel", "Spuitwerk & Lakwerk", "Deukwerk & PDR", "Hagelschade", "Caravan & Camper"].map(s => (
-                  <li key={s} className="hover:text-white/70 cursor-default transition-colors">{s}</li>
+                  <li key={s} className="hover:text-white/60 transition-colors cursor-default">{s}</li>
                 ))}
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-sm mb-4 text-white/80 uppercase tracking-wide">Informatie</h4>
-              <ul className="space-y-2 text-white/40 text-sm">
-                {["Over ons", "Reviews", "Partners", "Contact"].map(s => (
-                  <li key={s}><a href={`#${s.toLowerCase()}`} className="hover:text-white/70 transition-colors">{s}</a></li>
+              <h4 className="font-bold text-xs mb-4 text-white/50 uppercase tracking-widest">Informatie</h4>
+              <ul className="space-y-2 text-white/30 text-sm">
+                {[
+                  { label: "Over ons",  href: "#over-ons" },
+                  { label: "Reviews",   href: "#reviews" },
+                  { label: "Partners",  href: "#partners" },
+                  { label: "Contact",   href: "#contact" },
+                ].map(s => (
+                  <li key={s.label}><a href={s.href} className="hover:text-white/60 transition-colors">{s.label}</a></li>
                 ))}
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-sm mb-4 text-white/80 uppercase tracking-wide">Contact</h4>
-              <ul className="space-y-2 text-white/40 text-sm">
+              <h4 className="font-bold text-xs mb-4 text-white/50 uppercase tracking-widest">Contact</h4>
+              <ul className="space-y-2 text-white/30 text-sm">
                 <li>Ambachtstraat 5, Denekamp</li>
                 <li><a href="tel:0541354640" className="hover:text-white transition-colors">0541-354640</a></li>
                 <li><a href="mailto:info@autoschadenijhuis.nl" className="hover:text-white transition-colors">info@autoschadenijhuis.nl</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="text-white/30 text-xs">
+          <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div className="text-white/20 text-xs">
               © 2026 Autoschade Bertie Nijhuis · BOVAG gecertificeerd · Duurzaam Repareren
             </div>
-            <div className="flex items-center gap-4 text-white/30 text-xs">
-              <span>Denekamp, Overijssel</span>
-            </div>
+            <div className="text-white/20 text-xs">Denekamp, Overijssel</div>
           </div>
         </div>
       </footer>

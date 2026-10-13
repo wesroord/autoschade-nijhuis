@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "allow": [
+      "Bash(*)",
+      "Read(**)",
+      "WebSearch",
+      "Skill(*)"
+    ]
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "skipDangerousModePermissionPrompt": true
+}

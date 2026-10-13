@@ -29,23 +29,23 @@ export default function ContactForm() {
   }
 
   const inputCls =
-    "w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 text-sm focus:outline-none focus:border-brand-400 focus:ring-1 focus:ring-brand-400 transition-colors";
-  const labelCls = "block text-white/70 text-xs font-semibold uppercase tracking-wide mb-1.5";
+    "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors";
+  const labelCls = "block text-white/40 text-xs font-semibold uppercase tracking-wide mb-1.5";
 
   if (status === "success") {
     return (
-      <div className="glass-card rounded-2xl p-10 text-center">
-        <CheckCircle2 className="w-12 h-12 text-green-400 mx-auto mb-4" />
+      <div className="bg-white/5 border border-white/10 rounded-2xl p-10 text-center">
+        <CheckCircle2 className="w-12 h-12 text-brand-400 mx-auto mb-4" />
         <h4 className="font-black text-white text-xl mb-2">Bericht verstuurd!</h4>
-        <p className="text-white/60 text-sm">Wij nemen binnen 24 uur contact met u op.</p>
+        <p className="text-white/40 text-sm">Wij nemen binnen 24 uur contact met u op.</p>
       </div>
     );
   }
 
   return (
-    <div className="glass-card rounded-2xl p-8">
+    <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
       <h3 className="font-black text-white text-2xl mb-1">Stuur ons een bericht</h3>
-      <p className="text-white/50 text-sm mb-7">Gratis en vrijblijvend — binnen 24 uur reactie</p>
+      <p className="text-white/30 text-sm mb-7">Gratis en vrijblijvend — binnen 24 uur reactie</p>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
@@ -63,15 +63,15 @@ export default function ContactForm() {
         </div>
         <div>
           <label className={labelCls}>Soort schade</label>
-          <select name="onderwerp" className={inputCls + " text-white/70"}>
-            <option value="" className="text-gray-900 bg-white">Selecteer een onderwerp</option>
-            <option className="text-gray-900 bg-white">Gratis offerte aanvragen</option>
-            <option className="text-gray-900 bg-white">Schadeherstel</option>
-            <option className="text-gray-900 bg-white">Spuitwerk / Lakwerk</option>
-            <option className="text-gray-900 bg-white">Hagelschade</option>
-            <option className="text-gray-900 bg-white">Deukwerk / PDR</option>
-            <option className="text-gray-900 bg-white">Caravan / Camper</option>
-            <option className="text-gray-900 bg-white">Anders</option>
+          <select name="onderwerp" className={inputCls + " text-white/40"}>
+            <option value="" className="bg-gray-900 text-white">Selecteer een onderwerp</option>
+            <option className="bg-gray-900 text-white">Gratis offerte aanvragen</option>
+            <option className="bg-gray-900 text-white">Schadeherstel</option>
+            <option className="bg-gray-900 text-white">Spuitwerk / Lakwerk</option>
+            <option className="bg-gray-900 text-white">Hagelschade</option>
+            <option className="bg-gray-900 text-white">Deukwerk / PDR</option>
+            <option className="bg-gray-900 text-white">Caravan / Camper</option>
+            <option className="bg-gray-900 text-white">Anders</option>
           </select>
         </div>
         <div>
@@ -90,15 +90,15 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="btn-primary w-full bg-white text-brand-800 py-4 rounded-xl font-black text-sm hover:bg-brand-50 transition-colors disabled:opacity-60"
+          className="btn-primary w-full bg-brand-700 hover:bg-brand-600 text-white py-4 rounded-xl font-bold text-sm disabled:opacity-60"
         >
           {status === "loading" ? "Versturen..." : "Bericht versturen →"}
         </button>
         <div className="flex items-center justify-center gap-2 pt-1">
           <Phone className="w-3.5 h-3.5 text-brand-400" />
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-white/30">
             Of bel direct:{" "}
-            <a href="tel:0541354640" className="text-white/70 font-bold hover:text-white transition-colors">
+            <a href="tel:0541354640" className="text-white/60 font-bold hover:text-white transition-colors">
               0541-354640
             </a>
           </p>
