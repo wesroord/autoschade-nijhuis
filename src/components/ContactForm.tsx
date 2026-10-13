@@ -12,7 +12,9 @@ export default function ContactForm() {
     const form = e.currentTarget;
     const data = new FormData(form);
     try {
-      const res = await fetch("https://formspree.io/f/xpwzgojq", {
+      data.append("_subject", "Nieuwe aanvraag via autoschadenijhuis.nl");
+      data.append("_captcha", "false");
+      const res = await fetch("https://formsubmit.co/ajax/info@autoschadenijhuis.nl", {
         method: "POST",
         body: data,
         headers: { Accept: "application/json" },
