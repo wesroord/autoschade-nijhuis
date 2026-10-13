@@ -3,7 +3,7 @@ import ContactForm from "@/components/ContactForm";
 import {
   Car, Paintbrush, Hammer, CloudSnow, Truck, Shield,
   Phone, Mail, MapPin, Star, CheckCircle2, Award,
-  Clock, ChevronRight, ArrowRight, Users,
+  Clock, ChevronRight, ArrowRight, Users, Instagram, Facebook,
 } from "lucide-react";
 
 const services = [
@@ -491,6 +491,27 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
+                <div className="flex items-center gap-3 mt-8">
+                  <span className="text-white/30 text-xs font-semibold uppercase tracking-wide">Volg ons</span>
+                  <a
+                    href="https://www.instagram.com/autoschadenijhuis/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-700/20 hover:border-brand-700/40 transition-all"
+                    aria-label="Instagram"
+                  >
+                    <Instagram className="w-4 h-4 text-white/50 hover:text-brand-400" />
+                  </a>
+                  <a
+                    href="https://www.facebook.com/autoschadenijhuis/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-700/20 hover:border-brand-700/40 transition-all"
+                    aria-label="Facebook"
+                  >
+                    <Facebook className="w-4 h-4 text-white/50 hover:text-brand-400" />
+                  </a>
+                </div>
               </div>
             </Animate>
             <Animate animation="reveal-right" className="lg:col-span-3">
@@ -572,6 +593,26 @@ export default function Home() {
                 <li><a href="tel:0541354640" className="hover:text-white transition-colors">0541-354640</a></li>
                 <li><a href="mailto:info@autoschadenijhuis.nl" className="hover:text-white transition-colors">info@autoschadenijhuis.nl</a></li>
               </ul>
+              <div className="flex gap-2 mt-4">
+                <a
+                  href="https://www.instagram.com/autoschadenijhuis/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-700/20 hover:border-brand-700/30 transition-all"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-3.5 h-3.5 text-white/50" />
+                </a>
+                <a
+                  href="https://www.facebook.com/autoschadenijhuis/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-700/20 hover:border-brand-700/30 transition-all"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-3.5 h-3.5 text-white/50" />
+                </a>
+              </div>
             </div>
           </div>
           <div className="border-t border-white/15 pt-8 flex flex-col sm:flex-row justify-between items-center gap-3">
