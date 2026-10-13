@@ -164,7 +164,7 @@ export default function Home() {
 
       {/* ─── HERO ─── */}
       {/* ─── HERO ─── */}
-      <section id="home" className="relative flex items-end sm:items-center pt-16 overflow-hidden h-[100svh] sm:h-[620px] lg:h-[680px]">
+      <section id="home" className="relative flex items-end sm:items-center pt-16 overflow-hidden h-[calc(100svh-72px)] sm:h-[620px] lg:h-[680px]">
         {/* Building photo: fixed 680px height, minimal crop (image is 1892×800) */}
         <div className="absolute inset-0 z-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
