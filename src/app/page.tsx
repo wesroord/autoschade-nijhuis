@@ -525,25 +525,13 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-3 mt-8">
                   <span className="text-white/30 text-xs font-semibold uppercase tracking-wide">Volg ons</span>
-                  <a
-                    href="https://www.instagram.com/autoschadenijhuis/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-700/20 hover:border-brand-700/40 transition-all"
-                    aria-label="Instagram"
-                  >
+                  <a href="https://www.instagram.com/autoschadenijhuis/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="opacity-90 hover:opacity-100 transition-opacity">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/instagram.png" alt="Instagram" className="w-4 h-4 object-contain" />
+                    <img src="/instagram.png" alt="Instagram" className="w-8 h-8 object-contain rounded-xl" />
                   </a>
-                  <a
-                    href="https://www.facebook.com/autoschadenijhuis/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-700/20 hover:border-brand-700/40 transition-all"
-                    aria-label="Facebook"
-                  >
+                  <a href="https://www.facebook.com/autoschadenijhuis/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="opacity-90 hover:opacity-100 transition-opacity">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/facebook.png" alt="Facebook" className="w-4 h-4 object-contain" />
+                    <img src="/facebook.png" alt="Facebook" className="w-8 h-8 object-contain rounded-full" />
                   </a>
                 </div>
               </div>
@@ -628,25 +616,13 @@ export default function Home() {
                 <li><a href="mailto:info@autoschadenijhuis.nl" className="hover:text-white transition-colors">info@autoschadenijhuis.nl</a></li>
               </ul>
               <div className="flex gap-2 mt-4">
-                <a
-                  href="https://www.instagram.com/autoschadenijhuis/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-700/20 hover:border-brand-700/30 transition-all"
-                  aria-label="Instagram"
-                >
+                <a href="https://www.instagram.com/autoschadenijhuis/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="opacity-75 hover:opacity-100 transition-opacity">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/instagram.png" alt="Instagram" className="w-3.5 h-3.5 object-contain" />
+                  <img src="/instagram.png" alt="Instagram" className="w-7 h-7 object-contain rounded-xl" />
                 </a>
-                <a
-                  href="https://www.facebook.com/autoschadenijhuis/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-700/20 hover:border-brand-700/30 transition-all"
-                  aria-label="Facebook"
-                >
+                <a href="https://www.facebook.com/autoschadenijhuis/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="opacity-75 hover:opacity-100 transition-opacity">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/facebook.png" alt="Facebook" className="w-3.5 h-3.5 object-contain" />
+                  <img src="/facebook.png" alt="Facebook" className="w-7 h-7 object-contain rounded-full" />
                 </a>
               </div>
             </div>
