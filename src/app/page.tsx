@@ -138,19 +138,19 @@ export default function Home() {
 
       {/* ─── HERO ─── */}
       <section id="home" className="relative min-h-screen flex items-center pt-16 overflow-hidden">
-        {/* Blurred building photo */}
+        {/* Building photo — no blur, sharp */}
         <div className="absolute inset-0 z-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/hero.jpg"
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover scale-105"
-            style={{ filter: "blur(3px) brightness(0.32)" }}
+            className="w-full h-full object-cover"
+            style={{ objectPosition: "center 30%", filter: "brightness(0.55)" }}
           />
         </div>
-        {/* Subtle grid overlay */}
-        <div className="absolute inset-0 z-0" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
+        {/* Left-to-right gradient: dark on left (text readable), lighter on right (photo visible) */}
+        <div className="absolute inset-0 z-0" style={{ background: "linear-gradient(100deg, rgba(5,10,25,0.75) 0%, rgba(5,10,25,0.50) 50%, rgba(5,10,25,0.20) 100%)" }} />
         {/* Bottom fade to white */}
         <div className="absolute bottom-0 left-0 right-0 h-32 z-10" style={{ background: "linear-gradient(to top, #ffffff, transparent)" }} />
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-20 lg:py-28">
