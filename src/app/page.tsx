@@ -331,7 +331,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-white/10 pt-6 text-center text-white/40 text-xs">
-            © {new Date().getFullYear()} Autoschade Bertie Nijhuis · KvK Denekamp · BOVAG gecertificeerd
+            © 2026 Autoschade Bertie Nijhuis · KvK Denekamp · BOVAG gecertificeerd
           </div>
         </div>
       </footer>
