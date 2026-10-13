@@ -136,25 +136,24 @@ export default function Home() {
       </header>
 
       {/* ─── HERO ─── */}
-      {/* Height = image aspect ratio (1892×800 = 2.365:1), min 480px for mobile */}
-      <section id="home" className="relative flex items-center pt-16 overflow-hidden"
-        style={{ height: "clamp(480px, calc(100vw / 2.365), 900px)" }}>
-        {/* Full photo, no zoom/crop */}
+      {/* ─── HERO ─── */}
+      <section id="home" className="relative flex items-center pt-16 overflow-hidden" style={{ height: "680px" }}>
+        {/* Building photo: fixed 680px height, minimal crop (image is 1892×800) */}
         <div className="absolute inset-0 z-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/hero.jpg"
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-contain"
-            style={{ objectPosition: "center center", filter: "brightness(0.6)", background: "#0a0f1e" }}
+            className="w-full h-full object-cover"
+            style={{ objectPosition: "center 40%", filter: "brightness(0.52)" }}
           />
         </div>
-        {/* Dark gradient on the left so text is readable */}
-        <div className="absolute inset-0 z-0" style={{ background: "linear-gradient(100deg, rgba(5,10,25,0.80) 0%, rgba(5,10,25,0.55) 45%, rgba(5,10,25,0.15) 100%)" }} />
+        {/* Gradient: dark-left for text, fades to transparent on right */}
+        <div className="absolute inset-0 z-0" style={{ background: "linear-gradient(105deg, rgba(4,8,20,0.85) 0%, rgba(4,8,20,0.60) 50%, rgba(4,8,20,0.20) 100%)" }} />
         {/* Bottom fade to white */}
         <div className="absolute bottom-0 left-0 right-0 h-24 z-10" style={{ background: "linear-gradient(to top, #ffffff, transparent)" }} />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-12 lg:py-16">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left */}
             <div>
@@ -545,21 +544,21 @@ export default function Home() {
                   <span className="text-brand-400 font-black text-sm leading-none block">BERTIE NIJHUIS</span>
                 </div>
               </div>
-              <p className="text-white/30 text-sm leading-relaxed">
+              <p className="text-white/55 text-sm leading-relaxed">
                 IJzersterk in schadewerk. Meer dan 40 jaar familiebedrijf in Denekamp.
               </p>
             </div>
             <div>
-              <h4 className="font-bold text-xs mb-4 text-white/50 uppercase tracking-widest">Diensten</h4>
-              <ul className="space-y-2 text-white/30 text-sm">
+              <h4 className="font-bold text-xs mb-4 text-white/70 uppercase tracking-widest">Diensten</h4>
+              <ul className="space-y-2 text-white/55 text-sm">
                 {["Schadeherstel", "Spuitwerk & Lakwerk", "Deukwerk & PDR", "Hagelschade", "Caravan & Camper"].map(s => (
                   <li key={s} className="hover:text-white/60 transition-colors cursor-default">{s}</li>
                 ))}
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-xs mb-4 text-white/50 uppercase tracking-widest">Informatie</h4>
-              <ul className="space-y-2 text-white/30 text-sm">
+              <h4 className="font-bold text-xs mb-4 text-white/70 uppercase tracking-widest">Informatie</h4>
+              <ul className="space-y-2 text-white/55 text-sm">
                 {[
                   { label: "Over ons",  href: "#over-ons" },
                   { label: "Reviews",   href: "#reviews" },
@@ -571,28 +570,28 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-xs mb-4 text-white/50 uppercase tracking-widest">Contact</h4>
-              <ul className="space-y-2 text-white/30 text-sm">
+              <h4 className="font-bold text-xs mb-4 text-white/70 uppercase tracking-widest">Contact</h4>
+              <ul className="space-y-2 text-white/55 text-sm">
                 <li>Ambachtstraat 5, Denekamp</li>
                 <li><a href="tel:0541354640" className="hover:text-white transition-colors">0541-354640</a></li>
                 <li><a href="mailto:info@autoschadenijhuis.nl" className="hover:text-white transition-colors">info@autoschadenijhuis.nl</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-3">
-            <div className="text-white/20 text-xs">
+          <div className="border-t border-white/15 pt-8 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div className="text-white/60 text-xs">
               © 2026 Autoschade Bertie Nijhuis · BOVAG gecertificeerd · Duurzaam Repareren
             </div>
-            <div className="flex items-center gap-4 text-white/20 text-xs">
+            <div className="flex items-center gap-4 text-white/60 text-xs">
               <span>Denekamp, Overijssel</span>
-              <span>·</span>
+              <span className="text-white/30">·</span>
               <span>
                 Webdesign:{" "}
                 <a
                   href="https://conneqtai.nl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/40 hover:text-white/70 transition-colors font-semibold"
+                  className="text-white hover:text-brand-400 transition-colors font-semibold"
                 >
                   Conneqtai
                 </a>
