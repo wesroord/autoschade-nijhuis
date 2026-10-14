@@ -222,44 +222,42 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right — white card on dark hero */}
-            <div className="hidden lg:flex justify-end">
-              <div className="glass-card rounded-2xl p-8 w-full max-w-sm">
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-1 h-7 bg-brand-700 rounded-full" />
-                  <h3 className="text-gray-900 font-black text-xl">Schade melden</h3>
-                </div>
-                <p className="text-gray-500 text-sm mb-6 pl-3">Ontvang binnen 24 uur een reactie</p>
-                <div className="space-y-3">
-                  <input
-                    type="text"
-                    placeholder="Uw naam"
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
+            {/* Right — floating BOVAG Garantie badge */}
+            <div className="hidden lg:flex justify-end items-center">
+              <div className="relative group">
+                {/* Glow ring */}
+                <div className="absolute -inset-3 rounded-3xl bg-white/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                {/* Card */}
+                <div
+                  className="glass-card rounded-3xl p-10 flex flex-col items-center gap-6 w-72"
+                  style={{ animation: "bovagFloat 4s ease-in-out infinite" }}
+                >
+                  <Image
+                    src="/bovag-garantie.png"
+                    alt="BOVAG Garantie"
+                    width={200}
+                    height={133}
+                    className="w-48 drop-shadow-lg"
+                    priority
                   />
-                  <input
-                    type="tel"
-                    placeholder="Telefoonnummer"
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
-                  />
-                  <select className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-500 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500">
-                    <option value="">Soort schade</option>
-                    <option>Schadeherstel</option>
-                    <option>Spuitwerk / Lakwerk</option>
-                    <option>Hagelschade</option>
-                    <option>Deukwerk / PDR</option>
-                    <option>Anders</option>
-                  </select>
-                  <a href="#contact" className="btn-primary w-full bg-brand-700 hover:bg-brand-600 text-white py-3 rounded-lg font-bold text-sm text-center block">
-                    Direct schade melden →
-                  </a>
-                </div>
-                <div className="flex items-center gap-2 mt-4 pt-4 border-t border-gray-100">
-                  <Phone className="w-4 h-4 text-brand-700" />
-                  <span className="text-gray-400 text-xs">Of bel:</span>
-                  <a href="tel:0541354640" className="text-gray-700 text-xs font-bold hover:text-brand-700">0541-354640</a>
+                  <div className="text-center">
+                    <p className="text-white font-black text-base tracking-wide">BOVAG Erkend Bedrijf</p>
+                    <p className="text-white/50 text-xs mt-1">Gecertificeerde kwaliteit &amp; garantie</p>
+                  </div>
+                  <div className="flex items-center gap-2 bg-white/10 rounded-xl px-4 py-2.5 w-full justify-center">
+                    <CheckCircle2 className="w-4 h-4 text-green-400 flex-shrink-0" />
+                    <span className="text-white/80 text-xs font-semibold">Garantie op al ons werk</span>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <style>{`
+              @keyframes bovagFloat {
+                0%, 100% { transform: translateY(0px); }
+                50%       { transform: translateY(-10px); }
+              }
+            `}</style>
           </div>
         </div>
       </section>
