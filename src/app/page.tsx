@@ -689,12 +689,12 @@ export default function Home() {
               <span>
                 Webdesign:{" "}
                 <a
-                  href="https://conneqtai.nl"
+                  href="https://www.conneqtai.nl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-brand-400 transition-colors font-semibold"
                 >
-                  Conneqtai
+                  ConneqtAI
                 </a>
               </span>
             </div>
