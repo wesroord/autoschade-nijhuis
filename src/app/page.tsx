@@ -229,15 +229,22 @@ export default function Home() {
                 <div className="absolute -inset-3 rounded-3xl bg-white/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 {/* Card */}
                 <div
-                  className="glass-card rounded-3xl p-10 flex flex-col items-center gap-6 w-72"
-                  style={{ animation: "bovagFloat 4s ease-in-out infinite" }}
+                  className="rounded-3xl p-10 flex flex-col items-center gap-6 w-72"
+                  style={{
+                    animation: "bovagFloat 4s ease-in-out infinite",
+                    background: "rgba(255,255,255,0.08)",
+                    backdropFilter: "blur(20px)",
+                    WebkitBackdropFilter: "blur(20px)",
+                    border: "1px solid rgba(255,255,255,0.18)",
+                    boxShadow: "0 24px 64px rgba(0,0,0,0.35)",
+                  }}
                 >
                   <Image
                     src="/bovag-garantie.png"
                     alt="BOVAG Garantie"
                     width={200}
                     height={133}
-                    className="w-48 drop-shadow-lg"
+                    className="w-48 drop-shadow-2xl rounded-lg"
                     priority
                   />
                   <div className="text-center">
