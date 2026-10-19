@@ -511,33 +511,25 @@ export default function Home() {
               Wij werken samen met toonaangevende partners om u de beste kwaliteit en service te garanderen.
             </p>
           </Animate>
-          {/* Certifications */}
-          <div className="flex flex-wrap gap-4 mb-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+            {/* Certificeringen */}
             <Animate delay={0} animation="reveal-scale">
               <a href="https://www.bovag.nl" target="_blank" rel="noopener noreferrer"
-                className="partner-card border-2 border-gray-200 hover:border-brand-300 rounded-2xl px-8 py-5 flex flex-col items-center justify-center gap-1 bg-white transition-all hover:shadow-md">
+                className="partner-card flex flex-col items-center justify-center gap-1 bg-white border border-gray-100 rounded-2xl p-4 min-h-[90px] hover:shadow-md">
                 <div className="text-[#C8102E] font-black text-2xl tracking-tight">BOVAG</div>
                 <div className="text-gray-400 text-xs font-medium">Gecertificeerd lid</div>
               </a>
             </Animate>
-            <Animate delay={70} animation="reveal-scale">
+            <Animate delay={40} animation="reveal-scale">
               <a href="https://www.duurzaamrepareren.nl" target="_blank" rel="noopener noreferrer"
-                className="partner-card border-2 border-gray-200 hover:border-brand-300 rounded-2xl px-8 py-5 flex flex-col items-center justify-center gap-1 bg-white transition-all hover:shadow-md">
+                className="partner-card flex flex-col items-center justify-center gap-1 bg-white border border-gray-100 rounded-2xl p-4 min-h-[90px] hover:shadow-md">
                 <div className="text-green-700 font-black text-sm text-center leading-tight">DUURZAAM<br />REPAREREN</div>
                 <div className="text-gray-400 text-xs font-medium">Gecertificeerd</div>
               </a>
             </Animate>
-          </div>
-
-          {/* Verzekeraars */}
-          <Animate animation="reveal">
-            <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-6">
-              Wij werken samen met alle grote verzekeraars
-            </p>
-          </Animate>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+            {/* Verzekeraars */}
             {insurers.map((ins, i) => (
-              <Animate key={ins.name} delay={i * 40} animation="reveal-scale">
+              <Animate key={ins.name} delay={(i + 2) * 40} animation="reveal-scale">
                 <a
                   href={ins.url}
                   target="_blank"
@@ -553,7 +545,6 @@ export default function Home() {
                     className="max-h-10 w-auto object-contain"
                     unoptimized
                   />
-                  <div className="h-0.5 w-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" style={{ backgroundColor: ins.color }} />
                 </a>
               </Animate>
             ))}
