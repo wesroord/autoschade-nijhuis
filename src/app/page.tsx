@@ -102,6 +102,28 @@ const reviews = [
   },
 ];
 
+const insurers = [
+  { name: "Nationale Nederlanden", url: "https://www.nn.nl",             color: "#FF6200", logo: "/logos/nn.svg"             },
+  { name: "OHRA",                  url: "https://www.ohra.nl",            color: "#003A78", logo: "/logos/ohra.svg"           },
+  { name: "ABN AMRO",              url: "https://www.abnamro.nl",         color: "#009286", logo: "/logos/abnamro.svg"        },
+  { name: "a.s.r.",                url: "https://www.asr.nl",             color: "#007B3E", logo: "/logos/asr.png"            },
+  { name: "de Goudse",             url: "https://www.goudse.com",         color: "#5B2D8E", logo: "/logos/goudse.svg"         },
+  { name: "de Zeeuwse",            url: "https://www.dezeeuwse.nl",       color: "#003380", logo: "/logos/dezeeuwse.png"      },
+  { name: "Ansvar Idéa",           url: "https://www.ansvar.nl",          color: "#2E7D32", logo: "/logos/ansvar.png"         },
+  { name: "MSIG Europe",           url: "https://www.msig-europe.com",    color: "#C0392B", logo: "/logos/msig.svg"           },
+  { name: "TVM Verzekeringen",     url: "https://www.tvm.nl",             color: "#009A44", logo: "/logos/tvm.svg"            },
+  { name: "Klaverblad",            url: "https://www.klaverblad.nl",      color: "#00843D", logo: "/logos/klaverblad.png"     },
+  { name: "SOM",                   url: "https://www.somverzekerd.nl",    color: "#1D4FA8", logo: "/logos/som.svg"            },
+  { name: "Mercurius",             url: "https://www.mercurius.nl",       color: "#1A237E", logo: "/logos/mercurius.svg"      },
+  { name: "Rhion",                 url: "https://www.rhion.nl",           color: "#003087", logo: "/logos/rhion.svg"          },
+  { name: "FBTO",                  url: "https://www.fbto.nl",            color: "#E63329", logo: "/logos/fbto.svg"           },
+  { name: "Centraal Beheer",       url: "https://www.centraal-beheer.nl", color: "#009E4A", logo: "/logos/centraalBeheer.svg" },
+  { name: "Interpolis",            url: "https://www.interpolis.nl",      color: "#00877A", logo: "/logos/interpolis.svg"     },
+  { name: "Avéro Achmea",          url: "https://www.averoachmea.nl",     color: "#E87722", logo: "/logos/avero.svg"          },
+  { name: "NH1816",                url: "https://www.nh1816.nl",          color: "#C0392B", logo: "/logos/nh1816.svg"         },
+  { name: "Univé",                 url: "https://www.unive.nl",           color: "#00A050", logo: "/logos/unive.svg"          },
+];
+
 const usps = [
   { icon: CheckCircle2, label: "Gratis offerte",       sub: "Altijd vrijblijvend" },
   { icon: Car,          label: "Vervangend vervoer",   sub: "Gratis leenauto" },
@@ -489,40 +511,53 @@ export default function Home() {
               Wij werken samen met toonaangevende partners om u de beste kwaliteit en service te garanderen.
             </p>
           </Animate>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {/* Certifications */}
+          <div className="flex flex-wrap gap-4 mb-12">
             <Animate delay={0} animation="reveal-scale">
-              <div className="partner-card border-2 border-gray-200 hover:border-brand-300 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 min-h-[110px] bg-white">
+              <a href="https://www.bovag.nl" target="_blank" rel="noopener noreferrer"
+                className="partner-card border-2 border-gray-200 hover:border-brand-300 rounded-2xl px-8 py-5 flex flex-col items-center justify-center gap-1 bg-white transition-all hover:shadow-md">
                 <div className="text-[#C8102E] font-black text-2xl tracking-tight">BOVAG</div>
-                <div className="text-gray-400 text-xs text-center font-medium">Gecertificeerd lid</div>
-              </div>
+                <div className="text-gray-400 text-xs font-medium">Gecertificeerd lid</div>
+              </a>
             </Animate>
             <Animate delay={70} animation="reveal-scale">
-              <div className="partner-card border-2 border-gray-200 hover:border-brand-300 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 min-h-[110px] bg-white">
+              <a href="https://www.duurzaamrepareren.nl" target="_blank" rel="noopener noreferrer"
+                className="partner-card border-2 border-gray-200 hover:border-brand-300 rounded-2xl px-8 py-5 flex flex-col items-center justify-center gap-1 bg-white transition-all hover:shadow-md">
                 <div className="text-green-700 font-black text-sm text-center leading-tight">DUURZAAM<br />REPAREREN</div>
-                <div className="text-gray-400 text-xs text-center font-medium">Gecertificeerd</div>
-              </div>
+                <div className="text-gray-400 text-xs font-medium">Gecertificeerd</div>
+              </a>
             </Animate>
-            {[1,2,3,4].map((n, i) => (
-              <Animate key={n} delay={(i + 2) * 70} animation="reveal-scale">
-                <div className="border-2 border-dashed border-gray-200 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 min-h-[110px] bg-gray-50">
-                  <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-                    <span className="text-gray-400 text-lg font-bold leading-none">+</span>
-                  </div>
-                  <div className="text-gray-400 text-xs text-center font-medium">Partner<br />binnenkort</div>
-                </div>
+          </div>
+
+          {/* Verzekeraars */}
+          <Animate animation="reveal">
+            <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-6">
+              Wij werken samen met alle grote verzekeraars
+            </p>
+          </Animate>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+            {insurers.map((ins, i) => (
+              <Animate key={ins.name} delay={i * 40} animation="reveal-scale">
+                <a
+                  href={ins.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={ins.name}
+                  className="partner-card flex flex-col items-center justify-center gap-2 bg-white border border-gray-100 rounded-2xl p-4 min-h-[90px] hover:shadow-md"
+                >
+                  <Image
+                    src={ins.logo}
+                    alt={ins.name}
+                    width={120}
+                    height={48}
+                    className="max-h-10 w-auto object-contain"
+                    unoptimized
+                  />
+                  <div className="h-0.5 w-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" style={{ backgroundColor: ins.color }} />
+                </a>
               </Animate>
             ))}
           </div>
-          <Animate animation="reveal" className="mt-12 pt-10 border-t border-gray-100">
-            <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-5 text-center">Wij werken samen met alle grote verzekeraars</p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {["Centraal Beheer", "Interpolis", "OHRA", "Allianz", "Nationale-Nederlanden", "Aegon", "InShared", "Univé"].map((name) => (
-                <span key={name} className="bg-gray-50 border border-gray-200 rounded-full px-4 py-1.5 text-gray-600 text-sm font-medium">
-                  {name}
-                </span>
-              ))}
-            </div>
-          </Animate>
         </div>
       </section>
 
